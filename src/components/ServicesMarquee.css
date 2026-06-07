@@ -1,0 +1,64 @@
+.marquee-wrapper {
+  background: var(--grad-primary);
+  border-top: 1px solid rgba(0, 180, 216, 0.3);
+  border-bottom: 1px solid rgba(0, 180, 216, 0.3);
+  padding: 16px 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.marquee-wrapper::before,
+.marquee-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.marquee-wrapper::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(13, 27, 75, 1), transparent);
+}
+
+.marquee-wrapper::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(13, 27, 75, 1), transparent);
+}
+
+.marquee-track {
+  display: flex;
+  gap: 0;
+  animation: marquee 30s linear infinite;
+  width: max-content;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.marquee-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 32px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.75);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.marquee-item:hover {
+  color: var(--accent);
+}
+
+.marquee-dot {
+  color: var(--accent);
+  font-size: 0.6rem;
+  opacity: 0.8;
+}

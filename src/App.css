@@ -1,0 +1,36 @@
+/* App-level global overrides and WhatsApp FAB */
+main {
+  min-height: 100vh;
+}
+
+/* WhatsApp FAB */
+.whatsapp-fab {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 999;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #25d366;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45);
+  transition: all 0.3s ease;
+  animation: pulse-ring 2.5s ease-in-out infinite;
+  text-decoration: none;
+}
+
+.whatsapp-fab:hover {
+  transform: scale(1.12) translateY(-2px);
+  box-shadow: 0 12px 32px rgba(37, 211, 102, 0.6);
+}
+
+.whatsapp-fab__icon {
+  width: 28px;
+  height: 28px;
+}
+
+/* Navbar spacer for non-hero pages handled via page-header padding-top */

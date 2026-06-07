@@ -1,0 +1,197 @@
+.interior-section {
+  background: var(--grad-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.interior-section__bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(ellipse 70% 50% at 80% 30%, rgba(0, 180, 216, 0.12), transparent),
+    radial-gradient(ellipse 50% 60% at 20% 80%, rgba(201, 168, 76, 0.08), transparent);
+  pointer-events: none;
+}
+
+/* Showcase Layout */
+.interior-section__showcase {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 32px;
+  align-items: start;
+  margin-bottom: 48px;
+}
+
+/* Menu */
+.interior-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.interior-menu__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  font-weight: 500;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.interior-menu__item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--white);
+}
+
+.interior-menu__item.active {
+  background: rgba(0, 180, 216, 0.2);
+  border-color: var(--accent);
+  color: var(--white);
+}
+
+.interior-menu__icon {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.interior-menu__label {
+  flex: 1;
+}
+
+.interior-menu__arrow {
+  opacity: 0;
+  transition: all 0.2s ease;
+  color: var(--accent);
+}
+
+.interior-menu__item.active .interior-menu__arrow,
+.interior-menu__item:hover .interior-menu__arrow {
+  opacity: 1;
+  transform: translateX(4px);
+}
+
+/* Showcase */
+.interior-showcase__frame {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  height: 420px;
+  position: relative;
+  box-shadow: var(--shadow-xl);
+}
+
+.interior-showcase__frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.interior-showcase__info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 28px 32px;
+  background: linear-gradient(to top, rgba(13, 27, 75, 0.95), transparent);
+}
+
+.interior-showcase__info h3 {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+
+.interior-showcase__info p {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 16px;
+}
+
+/* Interior Cards Grid */
+.interior-cards {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+}
+
+.interior-card {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+}
+
+.interior-card__img {
+  position: relative;
+  height: 140px;
+  overflow: hidden;
+}
+
+.interior-card__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.interior-card:hover .interior-card__img img {
+  transform: scale(1.1);
+}
+
+.interior-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(13, 27, 75, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.interior-card:hover .interior-card__overlay {
+  opacity: 1;
+}
+
+.interior-card__icon {
+  font-size: 2rem;
+  transform: scale(0.7);
+  transition: transform 0.3s ease;
+}
+
+.interior-card:hover .interior-card__icon {
+  transform: scale(1);
+}
+
+.interior-card__label {
+  padding: 10px 12px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: none;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+}
+
+@media (max-width: 1024px) {
+  .interior-section__showcase { grid-template-columns: 1fr; }
+  .interior-menu { display: grid; grid-template-columns: 1fr 1fr; }
+  .interior-menu__arrow { display: none; }
+  .interior-cards { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .interior-menu { grid-template-columns: 1fr; }
+  .interior-showcase__frame { height: 280px; }
+  .interior-cards { grid-template-columns: repeat(2, 1fr); }
+}

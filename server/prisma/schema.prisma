@@ -1,0 +1,154 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Role {
+  id          Int              @id @default(autoincrement())
+  name        String           @unique
+  description String?
+  users       User[]
+  permissions RolePermission[]
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+}
+
+model Permission {
+  id          String           @id // e.g. "view_leads", "manage_staff", etc.
+  name        String
+  description String?
+  roles       RolePermission[]
+}
+
+model RolePermission {
+  roleId       Int
+  permissionId String
+  role         Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permission   Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@id([roleId, permissionId])
+}
+
+model User {
+  id             Int            @id @default(autoincrement())
+  username       String         @unique
+  password       String
+  fullName       String
+  email          String         @unique
+  mobileNumber   String?
+  roleId         Int
+  role           Role           @relation(fields: [roleId], references: [id])
+  isActive       Boolean        @default(true)
+  failedAttempts Int            @default(0)
+  lockUntil      DateTime?
+  refreshToken   String?
+  allocatedLeads Lead[]         @relation("AllocatedStaff")
+  leadActions    LeadHistory[]
+  activityLogs   ActivityLog[]
+  notifications  Notification[]
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+}
+
+enum LeadSource {
+  WEBSITE
+  RECEPTION
+}
+
+enum LeadStatus {
+  NEW_LEAD
+  CONTACTED
+  INTERESTED
+  SITE_VISIT_SCHEDULED
+  NEGOTIATION
+  CLOSED_WON
+  CLOSED_LOST
+}
+
+model Lead {
+  id                     Int           @id @default(autoincrement())
+  source                 LeadSource    @default(WEBSITE)
+  firstName              String
+  lastName               String
+  contactNumber          String
+  alternateNumber        String?
+  interestedService      String
+  occupation             String
+  budget                 String
+  inquiryType            String        // "Investor" or "Real Buyer"
+  interestedArea         String?       // Required for reception
+  allocatedStaffId       Int?
+  allocatedStaff         User?         @relation("AllocatedStaff", fields: [allocatedStaffId], references: [id], onDelete: SetNull)
+  interestedForSiteVisit Boolean       @default(false)
+  reference              String?
+  notes                  String?
+  followUpDate           DateTime?
+  status                 LeadStatus    @default(NEW_LEAD)
+  history                LeadHistory[]
+  followUps              FollowUp[]
+  createdAt              DateTime      @default(now())
+  updatedAt              DateTime      @updatedAt
+}
+
+model LeadHistory {
+  id        Int      @id @default(autoincrement())
+  leadId    Int
+  lead      Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  userId    Int?
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  action    String   // e.g. "Status changed from NEW_LEAD to CONTACTED"
+  details   String?
+  createdAt DateTime @default(now())
+}
+
+model FollowUp {
+  id          Int      @id @default(autoincrement())
+  leadId      Int
+  lead        Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  date        DateTime
+  notes       String?
+  isCompleted Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model ActivityLog {
+  id        Int      @id @default(autoincrement())
+  userId    Int?
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  ipAddress String?
+  action    String   // e.g. "LOGIN", "CREATE_LEAD", "UPDATE_STAFF"
+  details   String?
+  createdAt DateTime @default(now())
+}
+
+model Notification {
+  id        Int      @id @default(autoincrement())
+  userId    Int      // Recipient
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title     String
+  message   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model Service {
+  id          String   @id // e.g. "residential", "commercial"
+  title       String
+  shortDesc   String?
+  description String?
+  features    String[] // Array of bullet features
+  image       String
+  dimensions  String   @default("1200 x 800 px")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Setting {
+  key   String @id
+  value String
+}
