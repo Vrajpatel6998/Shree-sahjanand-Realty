@@ -227,7 +227,10 @@ router.get('/summary', authenticateToken, requirePermission('view_leads'), async
         staff: l.allocatedStaff ? l.allocatedStaff.fullName : 'Unassigned',
         date: l.createdAt,
       })),
-      dailyLeads: dailyLeadsRaw,
+      dailyLeads: dailyLeadsRaw.map((row) => ({
+        ...row,
+        count: Number(row.count),
+      })),
     });
   } catch (error) {
     console.error(error);
