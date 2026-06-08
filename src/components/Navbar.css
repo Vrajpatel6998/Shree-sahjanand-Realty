@@ -2,12 +2,19 @@
    NAVBAR STYLES
    ============================================ */
 
-.navbar {
+.header-container {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: var(--z-navbar);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.navbar {
+  width: 100%;
   padding: 16px 0;
   background: transparent;
   transition: all 0.4s ease;
@@ -98,7 +105,7 @@
   gap: 4px;
   padding: 8px 14px;
   border-radius: var(--radius-sm);
-  font-size: 0.9rem;
+  font-size: 1.05rem;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.9);
   cursor: pointer;
@@ -172,7 +179,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.85rem;
+  font-size: 0.98rem;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.9);
   transition: color 0.3s ease;
@@ -188,7 +195,7 @@
 }
 
 .navbar__cta {
-  font-size: 0.85rem !important;
+  font-size: 0.98rem !important;
 }
 
 /* Hamburger */

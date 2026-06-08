@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FiMenu, FiX, FiChevronDown, FiPhone } from 'react-icons/fi'
 import logo from '../assets/logo.jpeg'
+import TopBar from './TopBar'
 import './Navbar.css'
 
 const serviceLinks = [
@@ -64,12 +65,14 @@ export default function Navbar({ onInquiryOpen }) {
 
   return (
     <>
-      <motion.nav
-        className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}
-        initial={{ y: -80 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      >
+      <div className={`header-container ${scrolled ? 'header-container--scrolled' : ''}`}>
+        <TopBar settings={settings} scrolled={scrolled} />
+        <motion.nav
+          className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}
+          initial={{ y: -80 }}
+          animate={{ y: 0 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        >
         <div className="navbar__inner container">
           {/* Logo */}
           <Link to="/" className="navbar__logo">
@@ -143,6 +146,7 @@ export default function Navbar({ onInquiryOpen }) {
           </button>
         </div>
       </motion.nav>
+      </div>
 
       {/* Mobile Menu */}
       <AnimatePresence>
