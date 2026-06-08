@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
-import { interiorServices } from '../data/siteData'
+import { interiorServices } from '../data/siteData.js'
 import './InteriorSection.css'
 
 export default function InteriorSection() {
@@ -43,7 +43,7 @@ export default function InteriorSection() {
                 className={`interior-menu__item ${i === active ? 'active' : ''}`}
                 onClick={() => setActive(i)}
               >
-                <span className="interior-menu__icon">{item.icon}</span>
+                <span className="interior-menu__icon"><item.icon size={18} /></span>
                 <span className="interior-menu__label">{item.title}</span>
                 <span className="interior-menu__arrow">→</span>
               </button>
@@ -73,7 +73,6 @@ export default function InteriorSection() {
                 <div className="interior-showcase__info">
                   <h3>{interiorServices[active].title}</h3>
                   <p>{interiorServices[active].desc}</p>
-                  <button className="btn btn-accent btn-sm">Request Quote</button>
                 </div>
               </motion.div>
             </AnimatePresence>
@@ -94,7 +93,7 @@ export default function InteriorSection() {
               <div className="interior-card__img">
                 <img src={item.image} alt={item.title} loading="lazy" />
                 <div className="interior-card__overlay">
-                  <span className="interior-card__icon">{item.icon}</span>
+                  <span className="interior-card__icon"><item.icon size={22} /></span>
                 </div>
               </div>
               <div className="interior-card__label">{item.title}</div>

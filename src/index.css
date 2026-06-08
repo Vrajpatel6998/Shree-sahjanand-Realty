@@ -62,8 +62,8 @@
   --transition-slow: 0.6s ease;
 
   /* Typography */
-  --font-body: 'Outfit', sans-serif;
-  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Ubuntu', sans-serif;
+  --font-heading: 'Ubuntu', sans-serif;
 
   /* Z-index scale */
   --z-navbar: 1000;

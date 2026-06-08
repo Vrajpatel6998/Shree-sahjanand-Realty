@@ -1,7 +1,25 @@
-// ============================================
-// SHREE SAHJANAND REALTY — SITE DATA (JSON)
-// Placeholder data — ready for API/backend
-// ============================================
+import { 
+  FiAward, 
+  FiSmile, 
+  FiHome, 
+  FiActivity, 
+  FiBriefcase, 
+  FiMap, 
+  FiDollarSign, 
+  FiKey, 
+  FiFileText, 
+  FiSearch, 
+  FiUsers, 
+  FiCheckCircle, 
+  FiTrendingUp, 
+  FiLayers, 
+  FiGrid, 
+  FiTool, 
+  FiShield, 
+  FiZap, 
+  FiTarget, 
+  FiLock 
+} from 'react-icons/fi';
 
 export const siteInfo = {
   name: "Shree Sahjanand Realty",
@@ -25,23 +43,23 @@ export const siteInfo = {
 };
 
 export const stats = [
-  { id: 1, value: 18, suffix: "+", label: "Years Experience", icon: "🏆" },
-  { id: 2, value: 1000, suffix: "+", label: "Happy Clients", icon: "😊" },
-  { id: 3, value: 500, suffix: "+", label: "Properties Sold", icon: "🏡" },
-  { id: 4, value: 100, suffix: "+", label: "Ongoing Projects", icon: "🏗️" },
+  { id: 1, value: 18, suffix: "+", label: "Years Experience", icon: FiAward },
+  { id: 2, value: 1000, suffix: "+", label: "Happy Clients", icon: FiSmile },
+  { id: 3, value: 500, suffix: "+", label: "Properties Sold", icon: FiHome },
+  { id: 4, value: 100, suffix: "+", label: "Ongoing Projects", icon: FiActivity },
 ];
 
 export const heroSlides = [
   {
     id: 1,
-    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=80",
+    image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1920&q=80",
     headline: "Your Trusted Real Estate Partner",
     highlight: "Since 2007",
     subheading: "Helping Families and Businesses Find Their Perfect Property",
   },
   {
     id: 2,
-    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1920&q=80",
+    image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1920&q=80",
     headline: "Premium Residential",
     highlight: "Properties",
     subheading: "Discover luxury homes and apartments designed for modern living",
@@ -55,7 +73,7 @@ export const heroSlides = [
   },
   {
     id: 4,
-    image: "https://images.unsplash.com/photo-1582407947304-fd86f28f958f?w=1920&q=80",
+    image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1920&q=80",
     headline: "Interior Design",
     highlight: "Excellence",
     subheading: "Transform your space into a masterpiece with our design experts",
@@ -66,9 +84,9 @@ export const services = [
   {
     id: "residential",
     title: "Residential Properties",
-    icon: "🏠",
+    icon: FiHome,
     shortDesc: "Luxury homes, apartments & villas for families and individuals.",
-    description: "We offer a wide range of residential properties including luxury homes, premium apartments, and villas. Our extensive portfolio ensures you find the perfect home that matches your lifestyle, preferences, and budget.",
+    description: "We offer a wide range of residential properties including luxury homes, premium apartments, and villas. Our portfolio ensures you find the perfect home that matches your lifestyle, preferences, and budget.",
     features: [
       "2, 3 & 4 BHK Apartments",
       "Independent Villas & Bungalows",
@@ -77,14 +95,14 @@ export const services = [
       "RERA Approved Properties",
       "Easy Loan Assistance",
     ],
-    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
     color: "#1a3c8e",
     gradient: "linear-gradient(135deg, #1a3c8e, #00b4d8)",
   },
   {
     id: "commercial",
     title: "Commercial Properties",
-    icon: "🏢",
+    icon: FiBriefcase,
     shortDesc: "Premium office spaces, shops & business centers.",
     description: "Grow your business with our premium commercial properties. From state-of-the-art office spaces to strategic retail locations, we help you find the commercial property that drives your business forward.",
     features: [
@@ -95,14 +113,14 @@ export const services = [
       "Strategic Locations",
       "High ROI Properties",
     ],
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80",
     color: "#00b4d8",
     gradient: "linear-gradient(135deg, #00b4d8, #48cae4)",
   },
   {
     id: "industrial",
     title: "Industrial Properties",
-    icon: "🏭",
+    icon: FiActivity,
     shortDesc: "Warehouses, factories & industrial plots for businesses.",
     description: "We specialize in industrial real estate including warehouses, manufacturing units, and industrial plots. Our team helps businesses secure the ideal industrial property for their operational needs.",
     features: [
@@ -113,14 +131,14 @@ export const services = [
       "GIDC Approved Properties",
       "Clear Title Properties",
     ],
-    image: "https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80",
     color: "#0d1b4b",
     gradient: "linear-gradient(135deg, #0d1b4b, #1a3c8e)",
   },
   {
     id: "land",
     title: "Land Properties",
-    icon: "🌳",
+    icon: FiMap,
     shortDesc: "Prime agricultural, residential & commercial plots.",
     description: "Invest in land with confidence. We offer a comprehensive range of plots and land properties across prime locations for residential development, commercial use, agriculture, and investment purposes.",
     features: [
@@ -138,7 +156,7 @@ export const services = [
   {
     id: "loans",
     title: "Real Estate Loans",
-    icon: "🏦",
+    icon: FiDollarSign,
     shortDesc: "Home, commercial & construction loans at best rates.",
     description: "Our dedicated loan advisory team assists you in securing the best real estate financing options. We work with leading banks and financial institutions to get you the most favorable loan terms.",
     features: [
@@ -149,14 +167,14 @@ export const services = [
       "Mortgage Loans",
       "Lowest Interest Rates",
     ],
-    image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80",
     color: "#c9a84c",
     gradient: "linear-gradient(135deg, #c9a84c, #f0d98c)",
   },
   {
     id: "interior",
     title: "Interior Solutions",
-    icon: "🛋️",
+    icon: FiLayers,
     shortDesc: "Premium interior design for homes, offices & commercial spaces.",
     description: "Transform your property into a stunning masterpiece with our interior design services. Our expert designers create personalized spaces that reflect your style while maximizing functionality and aesthetics.",
     features: [
@@ -167,26 +185,26 @@ export const services = [
       "Renovation Services",
       "3D Design Visualization",
     ],
-    image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200&q=90",
     color: "#8b5cf6",
     gradient: "linear-gradient(135deg, #8b5cf6, #00b4d8)",
   },
 ];
 
 export const loanTypes = [
-  { id: 1, icon: "🏠", title: "Home Loans", desc: "Competitive rates for your dream home up to ₹5 crores", rate: "8.5% p.a." },
-  { id: 2, icon: "🏢", title: "Commercial Loans", desc: "Finance your commercial property purchase seamlessly", rate: "9.0% p.a." },
-  { id: 3, icon: "🏗️", title: "Construction Loans", desc: "Build your dream from ground up with easy financing", rate: "8.75% p.a." },
-  { id: 4, icon: "🔑", title: "Property Loans", desc: "Loan against property for immediate financial needs", rate: "9.5% p.a." },
-  { id: 5, icon: "🏦", title: "Mortgage Loans", desc: "Flexible mortgage solutions with easy EMI options", rate: "8.9% p.a." },
+  { id: 1, icon: FiHome, title: "Home Loans", desc: "Competitive rates for your dream home up to ₹5 crores", rate: "8.5% p.a." },
+  { id: 2, icon: FiBriefcase, title: "Commercial Loans", desc: "Finance your commercial property purchase seamlessly", rate: "9.0% p.a." },
+  { id: 3, icon: FiActivity, title: "Construction Loans", desc: "Build your dream from ground up with easy financing", rate: "8.75% p.a." },
+  { id: 4, icon: FiKey, title: "Property Loans", desc: "Loan against property for immediate financial needs", rate: "9.5% p.a." },
+  { id: 5, icon: FiDollarSign, title: "Mortgage Loans", desc: "Flexible mortgage solutions with easy EMI options", rate: "8.9% p.a." },
 ];
 
 export const loanProcess = [
-  { step: 1, title: "Apply Online", desc: "Fill our simple inquiry form with basic details", icon: "📝" },
-  { step: 2, title: "Document Review", desc: "Our experts review your documents and eligibility", icon: "🔍" },
-  { step: 3, title: "Bank Tie-up", desc: "We connect you with the best lending partners", icon: "🤝" },
-  { step: 4, title: "Approval", desc: "Get loan approval within 3-7 working days", icon: "✅" },
-  { step: 5, title: "Disbursement", desc: "Quick disbursement directly to your account", icon: "💰" },
+  { step: 1, title: "Apply Online", desc: "Fill our simple inquiry form with basic details", icon: FiFileText },
+  { step: 2, title: "Document Review", desc: "Our experts review your documents and eligibility", icon: FiSearch },
+  { step: 3, title: "Bank Tie-up", desc: "We connect you with the best lending partners", icon: FiUsers },
+  { step: 4, title: "Approval", desc: "Get loan approval within 3-7 working days", icon: FiCheckCircle },
+  { step: 5, title: "Disbursement", desc: "Quick disbursement directly to your account", icon: FiTrendingUp },
 ];
 
 export const interiorServices = [
@@ -194,36 +212,36 @@ export const interiorServices = [
     id: 1,
     title: "Residential Interiors",
     desc: "Transform your home into a luxurious sanctuary",
-    image: "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?w=600&q=80",
-    icon: "🛋️",
+    image: "https://images.unsplash.com/photo-1615529182904-14819c35db37?w=1000&q=90",
+    icon: FiLayers,
   },
   {
     id: 2,
     title: "Commercial Interiors",
     desc: "Create impressive spaces that inspire business",
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80",
-    icon: "🏢",
+    image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1000&q=90",
+    icon: FiBriefcase,
   },
   {
     id: 3,
     title: "Office Interiors",
     desc: "Productive workspaces designed for success",
-    image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=600&q=80",
-    icon: "💼",
+    image: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=1000&q=90",
+    icon: FiUsers,
   },
   {
     id: 4,
     title: "Space Planning",
     desc: "Optimize every square foot with smart design",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
-    icon: "📐",
+    image: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1000&q=90",
+    icon: FiGrid,
   },
   {
     id: 5,
     title: "Renovation Services",
     desc: "Breathe new life into existing spaces",
-    image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80",
-    icon: "🔨",
+    image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=1000&q=90",
+    icon: FiTool,
   },
 ];
 
@@ -277,12 +295,12 @@ export const timeline = [
 ];
 
 export const whyUs = [
-  { icon: "🏆", title: "18+ Years Experience", desc: "Decades of expertise in real estate market across Gujarat" },
-  { icon: "🤝", title: "Trusted Network", desc: "Strong network of 50+ developers and banking partners" },
-  { icon: "💯", title: "RERA Compliant", desc: "All properties are RERA approved and legally verified" },
-  { icon: "⚡", title: "Quick Processing", desc: "Fast-track property deals and loan approvals" },
-  { icon: "🎯", title: "Personalized Service", desc: "Dedicated agents for every client's unique needs" },
-  { icon: "🔐", title: "Legal Assistance", desc: "Complete legal support for hassle-free transactions" },
+  { icon: FiAward, title: "18+ Years Experience", desc: "Decades of expertise in real estate market across Gujarat" },
+  { icon: FiUsers, title: "Trusted Network", desc: "Strong network of 50+ developers and banking partners" },
+  { icon: FiShield, title: "RERA Compliant", desc: "All properties are RERA approved and legally verified" },
+  { icon: FiZap, title: "Quick Processing", desc: "Fast-track property deals and loan approvals" },
+  { icon: FiTarget, title: "Personalized Service", desc: "Dedicated agents for every client's unique needs" },
+  { icon: FiLock, title: "Legal Assistance", desc: "Complete legal support for hassle-free transactions" },
 ];
 
 export const inquiryFormOptions = {

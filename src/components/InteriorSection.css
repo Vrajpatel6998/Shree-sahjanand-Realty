@@ -1,7 +1,15 @@
 .interior-section {
-  background: var(--grad-primary);
+  background: #060b18; /* Deep premium obsidian blue */
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(26, 60, 142, 0.35) 0px, transparent 55%),
+    radial-gradient(at 100% 100%, rgba(0, 180, 216, 0.25) 0px, transparent 55%),
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
   position: relative;
   overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .interior-section__bg {

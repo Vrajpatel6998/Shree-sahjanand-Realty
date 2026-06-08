@@ -1,5 +1,5 @@
 .float-form {
-  width: 340px;
+  width: 420px;
   flex-shrink: 0;
   background: rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(24px);
@@ -109,8 +109,13 @@
   box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.25) !important;
 }
 
+.float-form .input-with-icon .form-control {
+  padding-left: 38px;
+}
+
 .float-form .input-with-icon .input-icon {
-  color: rgba(255, 255, 255, 0.5);
+  left: 12px;
+  color: var(--gray-text);
 }
 
 .float-form .input-with-icon .form-control:focus ~ .input-icon,

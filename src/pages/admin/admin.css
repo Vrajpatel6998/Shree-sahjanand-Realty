@@ -57,7 +57,7 @@
   background-color: var(--admin-bg-primary);
   color: var(--admin-text-primary);
   min-height: 100vh;
-  font-family: 'Outfit', 'Inter', sans-serif;
+  font-family: 'Ubuntu', sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 

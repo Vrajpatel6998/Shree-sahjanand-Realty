@@ -212,9 +212,9 @@ export default function Roles() {
                     <strong style={{ fontSize: '0.9rem' }}>{r.name}</strong>
                   </div>
                   {r.name !== 'Admin' && r.name !== 'Receptionist' && (
-                    <div style={{ display: 'flex', gap: '4px' }}>
-                      <button style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--admin-text-muted)' }} onClick={(e) => handleEditClick(r, e)}>✏️</button>
-                      <button style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--admin-danger)' }} onClick={(e) => handleDeleteClick(r, e)}>🗑️</button>
+                    <div style={{ display: 'flex', gap: '8px' }}>
+                      <button style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--admin-text-muted)', display: 'inline-flex', padding: '4px' }} onClick={(e) => handleEditClick(r, e)} aria-label="Edit role"><FiEdit size={14} /></button>
+                      <button style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--admin-danger)', display: 'inline-flex', padding: '4px' }} onClick={(e) => handleDeleteClick(r, e)} aria-label="Delete role"><FiTrash2 size={14} /></button>
                     </div>
                   )}
                 </div>

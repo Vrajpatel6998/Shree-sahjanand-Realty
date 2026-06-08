@@ -104,16 +104,27 @@ export const AuthProvider = ({ children }) => {
         body: JSON.stringify({ username, password }),
       });
 
-      const data = await response.json();
+      let data = null;
+      const contentType = response.headers.get('content-type');
+      if (contentType && contentType.includes('application/json')) {
+        data = await response.json();
+      }
 
       if (!response.ok) {
-        throw new Error(data.message || 'Login failed');
+        throw new Error(data?.message || `Failed to connect to the server (Status: ${response.status})`);
+      }
+
+      if (!data) {
+        throw new Error('Invalid server response format');
       }
 
       setToken(data.accessToken);
       setUser(data.user);
       return data.user;
     } catch (err) {
+      if (err.message === 'Failed to fetch') {
+        throw new Error('Failed to connect to backend server. Please make sure the backend is running.');
+      }
       throw err;
     }
   };

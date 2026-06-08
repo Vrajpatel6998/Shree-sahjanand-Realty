@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { FiSend, FiUser, FiPhone, FiBriefcase, FiDollarSign, FiAward, FiTag, FiSearch } from 'react-icons/fi'
-import { inquiryFormOptions } from '../data/siteData'
+import { FiSend, FiUser, FiPhone, FiBriefcase, FiDollarSign, FiAward, FiTag, FiSearch, FiCheckCircle } from 'react-icons/fi'
+import { inquiryFormOptions } from '../data/siteData.js'
 import './FloatingInquiryForm.css'
 
 const initialState = {
@@ -171,7 +171,9 @@ export default function FloatingInquiryForm() {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
         >
-          <div className="float-form__success-icon">🎉</div>
+          <div className="float-form__success-icon">
+            <FiCheckCircle style={{ color: 'var(--accent)', fontSize: '3rem' }} />
+          </div>
           <h4>Thank You!</h4>
           <p>Our team will reach out shortly.</p>
         </motion.div>

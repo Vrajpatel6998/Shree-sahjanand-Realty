@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
-import { FiBookOpen, FiUpload, FiImage, FiCheck, FiTrash2, FiAlertCircle } from 'react-icons/fi';
+import { FiBookOpen, FiUpload, FiImage, FiCheck, FiTrash2, FiAlertCircle, FiHome, FiBriefcase, FiActivity, FiMap, FiDollarSign, FiLayers } from 'react-icons/fi';
 import './admin.css';
 
 export default function Services() {
@@ -303,8 +303,8 @@ export default function Services() {
                   gap: '12px'
                 }}
               >
-                <span style={{ fontSize: '1.4rem' }}>
-                  {s.id === 'residential' ? '🏠' : s.id === 'commercial' ? '🏢' : s.id === 'industrial' ? '🏭' : s.id === 'land' ? '🌳' : s.id === 'loans' ? '🏦' : '🛋️'}
+                <span style={{ fontSize: '1.2rem', display: 'inline-flex' }}>
+                  {s.id === 'residential' ? <FiHome /> : s.id === 'commercial' ? <FiBriefcase /> : s.id === 'industrial' ? <FiActivity /> : s.id === 'land' ? <FiMap /> : s.id === 'loans' ? <FiDollarSign /> : <FiLayers />}
                 </span>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
                   <strong style={{ fontSize: '0.9rem', color: selectedService?.id === s.id ? 'var(--admin-primary)' : 'var(--admin-text-primary)' }}>{s.title}</strong>

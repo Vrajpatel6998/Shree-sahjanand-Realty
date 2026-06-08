@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { FiPhone, FiMail, FiFacebook, FiInstagram, FiTwitter, FiYoutube, FiLinkedin } from 'react-icons/fi'
+import { FiPhone, FiMail, FiFacebook, FiInstagram, FiTwitter, FiYoutube, FiLinkedin, FiAward } from 'react-icons/fi'
 import { FaWhatsapp } from 'react-icons/fa'
-import { siteInfo } from '../data/siteData'
+import { siteInfo } from '../data/siteData.js'
 import './TopBar.css'
 
 export default function TopBar({ settings, scrolled }) {
   const [currentLineIdx, setCurrentLineIdx] = useState(0)
   
   const lines = [
-    "✨ Your Trusted Real Estate Partner Since 2007",
-    "📞 Contact us for free legal guidance & property consulting!"
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}><FiAward style={{ color: 'var(--accent)' }} /> Your Trusted Real Estate Partner Since 2007</span>,
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}><FiPhone style={{ color: 'var(--accent)' }} /> Contact us for free legal guidance & property consulting!</span>
   ]
 
   useEffect(() => {

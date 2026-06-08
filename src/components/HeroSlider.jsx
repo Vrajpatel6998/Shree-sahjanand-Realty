@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FiChevronLeft, FiChevronRight, FiArrowRight } from 'react-icons/fi'
-import { heroSlides } from '../data/siteData'
+import { heroSlides } from '../data/siteData.js'
 import FloatingInquiryForm from './FloatingInquiryForm'
 import './HeroSlider.css'
 

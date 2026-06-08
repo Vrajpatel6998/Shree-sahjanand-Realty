@@ -14,7 +14,7 @@ export default function Home({ onInquiryOpen }) {
       <StatsSection />
       <AboutSection />
       <ServicesSection />
-      <LoanSection />
+      <LoanSection onInquiryOpen={onInquiryOpen} />
       <InteriorSection />
       <TeamSection />
       <CTASection onInquiryOpen={onInquiryOpen} />

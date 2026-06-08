@@ -1,8 +1,8 @@
 import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useInView } from 'framer-motion'
-import { FiCheckCircle, FiArrowRight } from 'react-icons/fi'
-import { teamMembers, timeline, whyUs, siteInfo } from '../data/siteData'
+import { FiCheckCircle, FiArrowRight, FiTarget, FiZap } from 'react-icons/fi'
+import { teamMembers, timeline, whyUs, siteInfo } from '../data/siteData.js'
 import TeamSection from '../components/TeamSection'
 import CTASection from '../components/CTASection'
 import './About.css'
@@ -10,12 +10,12 @@ import './About.css'
 const visionMission = [
   {
     type: 'Vision',
-    icon: '🎯',
+    icon: FiTarget,
     content: 'To be the most trusted and preferred real estate partner across Gujarat, known for integrity, expertise, and client-centric service that transforms property dreams into reality.',
   },
   {
     type: 'Mission',
-    icon: '🚀',
+    icon: FiZap,
     content: 'To provide transparent, ethical, and comprehensive real estate solutions — from property discovery to interior design — creating lasting value for every client we serve.',
   },
 ]
@@ -117,7 +117,7 @@ export default function About({ onInquiryOpen }) {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.2, duration: 0.7 }}
               >
-                <div className="vm-card__icon">{item.icon}</div>
+                <div className="vm-card__icon"><item.icon size={32} /></div>
                 <h3 className="vm-card__type">{item.type}</h3>
                 <div className="vm-card__divider" />
                 <p className="vm-card__content">{item.content}</p>
@@ -152,7 +152,7 @@ export default function About({ onInquiryOpen }) {
                 animate={whyInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ delay: i * 0.1, duration: 0.5 }}
               >
-                <div className="why-card__icon">{item.icon}</div>
+                <div className="why-card__icon"><item.icon size={32} /></div>
                 <h4 className="why-card__title">{item.title}</h4>
                 <p className="why-card__desc">{item.desc}</p>
               </motion.div>

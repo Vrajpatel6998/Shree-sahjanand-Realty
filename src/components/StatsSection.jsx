@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { stats } from '../data/siteData'
+import { stats } from '../data/siteData.js'
 import './StatsSection.css'
 
 function Counter({ value, suffix, duration = 2000 }) {
@@ -50,7 +50,7 @@ export default function StatsSection() {
               animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
               transition={{ duration: 0.6, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
             >
-              <div className="stats__icon">{stat.icon}</div>
+              <div className="stats__icon"><stat.icon size={36} /></div>
               <div className="stats__number">
                 <Counter value={stat.value} suffix={stat.suffix} />
               </div>

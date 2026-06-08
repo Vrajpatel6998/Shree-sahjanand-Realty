@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { FiPhone, FiMail, FiMapPin, FiFacebook, FiInstagram, FiYoutube, FiLinkedin, FiSend, FiTwitter } from 'react-icons/fi'
 import { FaWhatsapp } from 'react-icons/fa'
 import logo from '../assets/logo.jpeg'
-import { siteInfo, services } from '../data/siteData'
+import { siteInfo, services } from '../data/siteData.js'
 import './Footer.css'
 
 const quickLinks = [
@@ -133,34 +133,6 @@ export default function Footer() {
                     <div className="footer__contact-value footer__contact-address">{settings?.address || siteInfo.address}</div>
                   </div>
                 </div>
-              </div>
-
-              {/* Newsletter */}
-              <div className="footer__newsletter">
-                <p className="footer__newsletter-title">Subscribe for Updates</p>
-                <form className="footer__newsletter-form" onSubmit={handleNewsletter}>
-                  <input
-                    type="email"
-                    id="footer-newsletter-email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Your email address"
-                    className="footer__newsletter-input"
-                    required
-                  />
-                  <button type="submit" className="footer__newsletter-btn" aria-label="Subscribe">
-                    <FiSend />
-                  </button>
-                </form>
-                {newsletterStatus === 'success' && (
-                  <motion.p
-                    className="footer__newsletter-success"
-                    initial={{ opacity: 0, y: 5 }}
-                    animate={{ opacity: 1, y: 0 }}
-                  >
-                    ✅ Subscribed successfully!
-                  </motion.p>
-                )}
               </div>
             </div>
           </div>

@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { FiArrowRight, FiCheckCircle } from 'react-icons/fi'
-import { services } from '../data/siteData'
+import { services } from '../data/siteData.js'
 import CTASection from '../components/CTASection'
 import './Services.css'
 
@@ -61,7 +61,7 @@ export default function Services({ onInquiryOpen }) {
                 <div className="service-detail__img-wrap">
                   <img src={service.image} alt={service.title} />
                   <div className="service-detail__img-badge" style={{ background: service.gradient }}>
-                    <span>{service.icon}</span>
+                    <span><service.icon size={26} /></span>
                   </div>
                 </div>
               </motion.div>

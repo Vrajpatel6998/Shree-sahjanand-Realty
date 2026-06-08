@@ -1,10 +1,10 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { FiArrowRight } from 'react-icons/fi'
-import { loanTypes, loanProcess } from '../data/siteData'
+import { loanTypes, loanProcess } from '../data/siteData.js'
 import './LoanSection.css'
 
-export default function LoanSection() {
+export default function LoanSection({ onInquiryOpen }) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, amount: 0.1 })
 
@@ -40,7 +40,7 @@ export default function LoanSection() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: i * 0.1, duration: 0.6 }}
             >
-              <div className="loan-card__icon">{loan.icon}</div>
+              <div className="loan-card__icon"><loan.icon size={28} /></div>
               <h3 className="loan-card__title">{loan.title}</h3>
               <p className="loan-card__desc">{loan.desc}</p>
               <div className="loan-card__rate">
@@ -65,7 +65,7 @@ export default function LoanSection() {
             {loanProcess.map((step, i) => (
               <div key={step.step} className="loan-step">
                 <div className="loan-step__circle">
-                  <span className="loan-step__icon">{step.icon}</span>
+                  <span className="loan-step__icon"><step.icon size={22} /></span>
                   <div className="loan-step__num">{step.step}</div>
                 </div>
                 {i < loanProcess.length - 1 && <div className="loan-step__line" />}
@@ -90,7 +90,7 @@ export default function LoanSection() {
               <h3>Ready to secure the best loan deal?</h3>
               <p>Our financial experts are waiting to guide you through the best options.</p>
             </div>
-            <button className="btn btn-gold btn-lg">
+            <button className="btn btn-gold btn-lg" onClick={onInquiryOpen}>
               Get Free Loan Advice
               <FiArrowRight />
             </button>

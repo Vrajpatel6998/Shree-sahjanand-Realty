@@ -1,9 +1,17 @@
 .cta-section {
-  background: var(--grad-primary);
+  background: #060b18; /* Deep premium obsidian blue */
+  background-image: 
+    radial-gradient(at 10% 20%, rgba(26, 60, 142, 0.35) 0px, transparent 55%),
+    radial-gradient(at 90% 80%, rgba(0, 180, 216, 0.25) 0px, transparent 55%),
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
   position: relative;
   overflow: hidden;
   text-align: center;
   padding: 120px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .cta-section__bg {
@@ -15,9 +23,9 @@
 .cta-particle {
   position: absolute;
   border-radius: 50%;
-  background: rgba(0, 180, 216, 0.12);
-  border: 1px solid rgba(0, 180, 216, 0.2);
-  animation: float 5s ease-in-out infinite;
+  background: rgba(0, 180, 216, 0.08);
+  border: 1px solid rgba(0, 180, 216, 0.15);
+  animation: float 6s ease-in-out infinite;
 }
 
 .cta-particle--1 { width: 80px; height: 80px; top: 10%; left: 8%; animation-delay: 0s; }
@@ -29,34 +37,37 @@
 
 .cta-section__content {
   position: relative;
-  z-index: 1;
-  max-width: 720px;
+  z-index: 2;
+  max-width: 760px;
   margin: 0 auto;
 }
 
 .cta-section__label {
   display: inline-block;
   padding: 8px 24px;
-  background: rgba(0, 180, 216, 0.15);
-  border: 1px solid rgba(0, 180, 216, 0.4);
+  background: rgba(0, 180, 216, 0.12);
+  border: 1px solid rgba(0, 180, 216, 0.35);
   border-radius: var(--radius-full);
   color: var(--accent);
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 2.5px;
   text-transform: uppercase;
-  margin-bottom: 24px;
+  margin-bottom: 28px;
+  box-shadow: 0 4px 15px rgba(0, 180, 216, 0.1);
 }
 
 .cta-section__heading {
-  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-size: clamp(2.4rem, 6.5vw, 3.8rem);
   color: var(--white);
-  line-height: 1.15;
-  margin-bottom: 20px;
+  line-height: 1.2;
+  margin-bottom: 24px;
+  font-weight: 800;
+  letter-spacing: -1px;
 }
 
 .cta-section__highlight {
-  background: var(--grad-accent);
+  background: linear-gradient(135deg, var(--white) 30%, var(--accent) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -64,8 +75,8 @@
 
 .cta-section__sub {
   font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.72);
-  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.75;
   margin-bottom: 44px;
 }
 
@@ -80,45 +91,62 @@
 .btn-white {
   background: var(--white);
   color: var(--primary-dark);
-  box-shadow: 0 8px 32px rgba(255,255,255,0.2);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
 }
 
 .btn-white:hover {
   background: var(--off-white);
   transform: translateY(-3px);
-  box-shadow: 0 16px 48px rgba(255,255,255,0.3);
+  box-shadow: 0 16px 40px rgba(255, 255, 255, 0.2);
 }
 
 .cta-section__trust {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0;
+  gap: 16px;
   flex-wrap: wrap;
+  margin-top: 48px;
 }
 
 .cta-trust-item {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 0 24px;
+  gap: 10px;
+  padding: 10px 22px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-full);
   font-size: 0.88rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.cta-trust-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(0, 180, 216, 0.4);
+  transform: translateY(-3px);
+  color: var(--white);
+  box-shadow: 0 10px 25px rgba(0, 180, 216, 0.15);
 }
 
 .cta-trust-icon {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
 }
 
-.cta-trust-divider {
-  width: 1px;
-  height: 20px;
-  background: rgba(255, 255, 255, 0.2);
+.cta-trust-item:hover .cta-trust-icon {
+  transform: scale(1.15) rotate(5deg);
 }
 
-@media (max-width: 600px) {
-  .cta-section { padding: 80px 0; }
-  .cta-section__trust { gap: 16px; }
-  .cta-trust-divider { display: none; }
+@media (max-width: 768px) {
+  .cta-section { padding: 90px 0; }
+  .cta-section__trust { gap: 12px; }
+  .cta-trust-item { padding: 8px 18px; font-size: 0.82rem; }
 }

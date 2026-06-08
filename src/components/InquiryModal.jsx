@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FiX, FiSend, FiUser, FiPhone, FiBriefcase, FiDollarSign, FiAward, FiTag, FiSearch } from 'react-icons/fi'
-import { inquiryFormOptions } from '../data/siteData'
+import { inquiryFormOptions } from '../data/siteData.js'
 import './InquiryModal.css'
 
 const initialState = {

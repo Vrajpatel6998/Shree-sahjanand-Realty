@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useInView } from 'framer-motion'
-import { FiArrowRight, FiMessageSquare } from 'react-icons/fi'
+import { FiArrowRight, FiMessageSquare, FiAward, FiSmile, FiHome, FiStar } from 'react-icons/fi'
 import './CTASection.css'
 
 export default function CTASection({ onInquiryOpen }) {
@@ -47,22 +47,19 @@ export default function CTASection({ onInquiryOpen }) {
 
           <div className="cta-section__trust">
             <div className="cta-trust-item">
-              <span className="cta-trust-icon">🏆</span>
+              <span className="cta-trust-icon"><FiAward /></span>
               <span>18+ Years</span>
             </div>
-            <div className="cta-trust-divider" />
             <div className="cta-trust-item">
-              <span className="cta-trust-icon">😊</span>
+              <span className="cta-trust-icon"><FiSmile /></span>
               <span>1000+ Clients</span>
             </div>
-            <div className="cta-trust-divider" />
             <div className="cta-trust-item">
-              <span className="cta-trust-icon">🏡</span>
+              <span className="cta-trust-icon"><FiHome /></span>
               <span>500+ Properties</span>
             </div>
-            <div className="cta-trust-divider" />
             <div className="cta-trust-item">
-              <span className="cta-trust-icon">⭐</span>
+              <span className="cta-trust-icon"><FiStar /></span>
               <span>5-Star Service</span>
             </div>
           </div>

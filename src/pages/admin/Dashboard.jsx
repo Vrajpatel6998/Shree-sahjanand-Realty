@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
-import { FiUsers, FiGlobe, FiDatabase, FiFileText, FiBriefcase, FiTag } from 'react-icons/fi';
+import { FiUsers, FiGlobe, FiDatabase, FiFileText, FiBriefcase, FiTag, FiLock, FiSettings } from 'react-icons/fi';
 import './admin.css';
 
 export default function Dashboard() {
@@ -390,8 +390,8 @@ export default function Dashboard() {
                 ) : (
                   data.recentActivities.map((act) => (
                     <div key={act.id} style={{ display: 'flex', gap: '12px', borderBottom: '1px solid var(--admin-border)', paddingBottom: '12px' }}>
-                      <span style={{ fontSize: '1.25rem', marginTop: '2px' }}>
-                        {act.action.includes('LOGIN') ? '🔑' : act.action.includes('LEAD') ? '📋' : '⚙️'}
+                      <span style={{ fontSize: '1.1rem', marginTop: '2px', display: 'inline-flex', alignItems: 'center', color: 'var(--admin-text-muted)' }}>
+                        {act.action.includes('LOGIN') ? <FiLock /> : act.action.includes('LEAD') ? <FiFileText /> : <FiSettings />}
                       </span>
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
                         <span style={{ fontSize: '0.85rem', fontWeight: '700' }}>

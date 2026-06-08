@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FiPhone, FiMail, FiMapPin, FiSend, FiUser, FiBriefcase, FiDollarSign, FiAward, FiTag, FiSearch } from 'react-icons/fi'
-import { siteInfo, inquiryFormOptions } from '../data/siteData'
+import { siteInfo, inquiryFormOptions } from '../data/siteData.js'
 import ServicesMarquee from '../components/ServicesMarquee'
 import './Contact.css'
 

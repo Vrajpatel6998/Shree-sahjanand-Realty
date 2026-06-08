@@ -12,7 +12,7 @@
   inset: 0;
   background-image:
     radial-gradient(ellipse 60% 50% at 80% 50%, rgba(0, 180, 216, 0.15), transparent),
-    url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&q=60");
+    url("https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1600&q=80");
   background-size: cover;
   background-position: center;
   background-blend-mode: overlay;

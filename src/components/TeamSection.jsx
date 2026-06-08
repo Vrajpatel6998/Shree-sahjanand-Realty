@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { FiPhone, FiMail, FiLinkedin, FiInstagram } from 'react-icons/fi'
-import { teamMembers } from '../data/siteData'
+import { FiPhone } from 'react-icons/fi'
+import { teamMembers } from '../data/siteData.js'
 import './TeamSection.css'
 
 export default function TeamSection() {
@@ -36,22 +36,6 @@ export default function TeamSection() {
             >
               <div className="team-card__photo">
                 <img src={member.image} alt={member.name} loading="lazy" />
-                <div className="team-card__overlay">
-                  <div className="team-card__socials">
-                    <a href={`mailto:${member.email}`} className="team-social-btn" title="Email">
-                      <FiMail />
-                    </a>
-                    <a href={`tel:${member.phone}`} className="team-social-btn" title="Call">
-                      <FiPhone />
-                    </a>
-                    <a href="#" className="team-social-btn" title="LinkedIn">
-                      <FiLinkedin />
-                    </a>
-                    <a href="#" className="team-social-btn" title="Instagram">
-                      <FiInstagram />
-                    </a>
-                  </div>
-                </div>
               </div>
 
               <div className="team-card__info">

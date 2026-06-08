@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useInView } from 'framer-motion'
 import { FiArrowRight } from 'react-icons/fi'
-import { services } from '../data/siteData'
+import { services } from '../data/siteData.js'
 import './ServicesSection.css'
 
 export default function ServicesSection() {
@@ -44,7 +44,7 @@ export default function ServicesSection() {
               </div>
 
               <div className="service-card__content">
-                <div className="service-card__icon">{service.icon}</div>
+                <div className="service-card__icon"><service.icon size={28} /></div>
                 <h3 className="service-card__title">{service.title}</h3>
                 <p className="service-card__desc">{service.shortDesc}</p>
                 <Link
