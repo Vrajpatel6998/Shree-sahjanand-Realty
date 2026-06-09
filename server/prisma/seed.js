@@ -97,13 +97,16 @@ async function main() {
 
   await prisma.user.upsert({
     where: { username: 'admin' },
-    update: {},
+    update: {
+      mobileNumber: '9909421050',
+      password: adminPasswordHash,
+    },
     create: {
       username: 'admin',
       password: adminPasswordHash,
       fullName: 'Super Admin',
       email: 'admin@shreesahjanandrealty.com',
-      mobileNumber: '9876543210',
+      mobileNumber: '9909421050',
       roleId: adminRole.id,
       isActive: true,
     },
@@ -111,13 +114,16 @@ async function main() {
 
   await prisma.user.upsert({
     where: { username: 'reception' },
-    update: {},
+    update: {
+      mobileNumber: '9909421050',
+      password: receptionistPasswordHash,
+    },
     create: {
       username: 'reception',
       password: receptionistPasswordHash,
       fullName: 'Receptionist Executive',
       email: 'reception@shreesahjanandrealty.com',
-      mobileNumber: '9876543211',
+      mobileNumber: '9909421050',
       roleId: receptionistRole.id,
       isActive: true,
     },
@@ -129,23 +135,23 @@ async function main() {
     companyName: 'Shree Sahjanand Realty',
     tagline: 'Trusted Real Estate Partner Since 2007',
     subtagline: 'Helping Families and Businesses Find Their Perfect Property',
-    phone: '+91 98765 43210',
-    phone2: '+91 98765 43211',
+    phone: '+91 99094 21050',
+    phone2: '',
     email: 'info@shreesahjanandrealty.com',
     email2: 'support@shreesahjanandrealty.com',
     address: '123, Business Hub, Near Sardar Patel Stadium, Navrangpura, Ahmedabad - 380009, Gujarat',
-    facebook: 'https://facebook.com/shreesahjanandrealty',
-    instagram: 'https://instagram.com/shreesahjanandrealty',
+    facebook: 'https://www.facebook.com/share/1GoXXCisGY/',
+    instagram: 'https://www.instagram.com/sahjanand_realty_1?igsh=cmRjNWx4azJuc3hx',
     twitter: 'https://twitter.com/shreesahjanandrealty',
     youtube: 'https://youtube.com/@shreesahjanandrealty',
     linkedin: 'https://linkedin.com/company/shreesahjanandrealty',
-    whatsapp: 'https://wa.me/919876543210',
+    whatsapp: 'https://wa.me/919909421050',
   };
 
   for (const [key, value] of Object.entries(defaultSettings)) {
     await prisma.setting.upsert({
       where: { key },
-      update: {},
+      update: { value },
       create: { key, value },
     });
   }

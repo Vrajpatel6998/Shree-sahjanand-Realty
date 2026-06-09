@@ -9,7 +9,7 @@
   align-items: center;
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-  z-index: calc(var(--z-navbar) + 5);
+  z-index: 1;
 }
 
 .top-bar--scrolled {
@@ -25,6 +25,8 @@
   grid-template-columns: 1.2fr 1fr auto;
   align-items: center;
   width: 100%;
+  position: relative;
+  z-index: 5;
 }
 
 .top-bar__announcement {
@@ -33,6 +35,7 @@
   height: 100%;
   overflow: hidden;
   position: relative;
+  padding-left: 250px;
 }
 
 .top-bar__announcement-text {
@@ -118,5 +121,11 @@
   }
   .top-bar__socials {
     justify-content: center;
+  }
+}
+
+@media (max-width: 900px) {
+  .top-bar__announcement {
+    padding-left: 0;
   }
 }

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
-import { FiUsers, FiGlobe, FiDatabase, FiFileText, FiBriefcase, FiTag, FiLock, FiSettings } from 'react-icons/fi';
+import { FiUsers, FiGlobe, FiDatabase, FiFileText } from 'react-icons/fi';
 import './admin.css';
 
 export default function Dashboard() {
@@ -283,15 +283,6 @@ export default function Dashboard() {
           </div>
         </div>
 
-        <div className="analytics-card">
-          <div className="analytics-card__info">
-            <span className="analytics-card__label">Property Services</span>
-            <span className="analytics-card__value">{data.totalServices}</span>
-          </div>
-          <div className="analytics-card__icon analytics-card__icon--primary" style={{ backgroundColor: 'rgba(139, 92, 246, 0.1)', color: '#8b5cf6' }}>
-            <FiBriefcase />
-          </div>
-        </div>
       </div>
 
       {/* Charts section (Hidden for Receptionist) */}
@@ -323,95 +314,53 @@ export default function Dashboard() {
         </div>
       )}
 
-      {/* Grid: Recent Leads & Recent Activities */}
-      <div style={{ display: 'grid', gridTemplateColumns: isReceptionist ? '1fr' : 'repeat(auto-fit, minmax(400px, 1fr))', gap: '24px' }}>
-        
-        {/* Recent Leads list */}
-        <div className="admin-card">
-          <div className="admin-card__header">
-            <span className="admin-card__title">Latest Lead Submissions</span>
-          </div>
-          <div className="admin-card__body" style={{ padding: 0 }}>
-            <div className="table-responsive">
-              <table className="admin-table">
-                <thead>
-                  <tr>
-                    <th>Lead Name</th>
-                    <th>Service</th>
-                    <th>Source</th>
-                    <th>Status</th>
-                    <th>Created</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {data.recentLeads.length === 0 ? (
-                    <tr>
-                      <td colSpan="5" style={{ padding: '24px', textAlign: 'center', color: 'var(--admin-text-muted)' }}>
-                        No leads registered yet.
-                      </td>
-                    </tr>
-                  ) : (
-                    data.recentLeads.map((l) => (
-                      <tr key={l.id}>
-                        <td style={{ fontWeight: '600' }}>{l.name}</td>
-                        <td>{l.service}</td>
-                        <td>
-                          <span style={{ fontSize: '0.8rem', padding: '2px 8px', borderRadius: '4px', backgroundColor: l.source === 'WEBSITE' ? 'rgba(59,130,246,0.1)' : 'rgba(16,185,129,0.1)', color: l.source === 'WEBSITE' ? 'var(--admin-info)' : 'var(--admin-success)', fontWeight: '600' }}>
-                            {l.source}
-                          </span>
-                        </td>
-                        <td>
-                          <span className={`status-tag status-tag--${l.status.toLowerCase().replace(/_/g, '')}`}>
-                            {l.status.replace(/_/g, ' ')}
-                          </span>
-                        </td>
-                        <td>{new Date(l.date).toLocaleDateString()}</td>
-                      </tr>
-                    ))
-                  )}
-                </tbody>
-              </table>
-            </div>
-          </div>
+      {/* Latest Lead Submissions list */}
+      <div className="admin-card" style={{ width: '100%', marginBottom: '24px' }}>
+        <div className="admin-card__header">
+          <span className="admin-card__title">Latest Lead Submissions</span>
         </div>
-
-        {/* System Activity logs (Admin Only) */}
-        {!isReceptionist && (
-          <div className="admin-card">
-            <div className="admin-card__header">
-              <span className="admin-card__title">Recent Operations Audit</span>
-            </div>
-            <div className="admin-card__body" style={{ padding: '20px 24px' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                {data.recentActivities.length === 0 ? (
-                  <div style={{ padding: '24px', textAlign: 'center', color: 'var(--admin-text-muted)' }}>
-                    No audit logs available.
-                  </div>
+        <div className="admin-card__body" style={{ padding: 0 }}>
+          <div className="table-responsive">
+            <table className="admin-table">
+              <thead>
+                <tr>
+                  <th>Lead Name</th>
+                  <th>Service</th>
+                  <th>Source</th>
+                  <th>Status</th>
+                  <th>Created</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.recentLeads.length === 0 ? (
+                  <tr>
+                    <td colSpan="5" style={{ padding: '24px', textAlign: 'center', color: 'var(--admin-text-muted)' }}>
+                      No leads registered yet.
+                    </td>
+                  </tr>
                 ) : (
-                  data.recentActivities.map((act) => (
-                    <div key={act.id} style={{ display: 'flex', gap: '12px', borderBottom: '1px solid var(--admin-border)', paddingBottom: '12px' }}>
-                      <span style={{ fontSize: '1.1rem', marginTop: '2px', display: 'inline-flex', alignItems: 'center', color: 'var(--admin-text-muted)' }}>
-                        {act.action.includes('LOGIN') ? <FiLock /> : act.action.includes('LEAD') ? <FiFileText /> : <FiSettings />}
-                      </span>
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-                        <span style={{ fontSize: '0.85rem', fontWeight: '700' }}>
-                          {act.action.replace(/_/g, ' ')}
+                  data.recentLeads.map((l) => (
+                    <tr key={l.id}>
+                      <td style={{ fontWeight: '600' }}>{l.name}</td>
+                      <td>{l.service}</td>
+                      <td>
+                        <span style={{ fontSize: '0.8rem', padding: '2px 8px', borderRadius: '4px', backgroundColor: l.source === 'WEBSITE' ? 'rgba(59,130,246,0.1)' : 'rgba(16,185,129,0.1)', color: l.source === 'WEBSITE' ? 'var(--admin-info)' : 'var(--admin-success)', fontWeight: '600' }}>
+                          {l.source}
                         </span>
-                        <span style={{ fontSize: '0.8rem', color: 'var(--admin-text-secondary)' }}>
-                          {act.details}
+                      </td>
+                      <td>
+                        <span className={`status-tag status-tag--${l.status.toLowerCase().replace(/_/g, '')}`}>
+                          {l.status.replace(/_/g, ' ')}
                         </span>
-                        <span style={{ fontSize: '0.7rem', color: 'var(--admin-text-muted)' }}>
-                          By {act.user} • {new Date(act.time).toLocaleString()}
-                        </span>
-                      </div>
-                    </div>
+                      </td>
+                      <td>{new Date(l.date).toLocaleDateString()}</td>
+                    </tr>
                   ))
                 )}
-              </div>
-            </div>
+              </tbody>
+            </table>
           </div>
-        )}
-
+        </div>
       </div>
     </div>
   );

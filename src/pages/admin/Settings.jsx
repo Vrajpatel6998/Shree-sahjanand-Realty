@@ -4,7 +4,7 @@ import { FiSettings, FiGlobe, FiDatabase, FiSave, FiDownload, FiCloud } from 're
 import './admin.css';
 
 export default function Settings() {
-  const { apiRequest, hasPermission } = useAuth();
+  const { apiRequest, hasPermission, token } = useAuth();
   
   const [activeTab, setActiveTab] = useState('profile'); // profile, backups
   const [loading, setLoading] = useState(true);
@@ -108,7 +108,7 @@ export default function Settings() {
     
     // Direct open backup endpoint (will trigger download)
     try {
-      window.open('/api/backups/export', '_blank');
+      window.open(`/api/backups/export?token=${token}`, '_blank');
       alert('Generating database schema and data backup file. Check downloads folder.');
     } catch (err) {
       console.error(err);
@@ -264,7 +264,7 @@ export default function Settings() {
             <div className="admin-card__body">
               <div className="admin-form-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
                 <div className="admin-form-group">
-                  <label>WhatsApp Link (e.g., https://wa.me/919876543210)</label>
+                  <label>WhatsApp Link (e.g., https://wa.me/919909421050)</label>
                   <input
                     className="admin-form-control"
                     value={whatsapp}

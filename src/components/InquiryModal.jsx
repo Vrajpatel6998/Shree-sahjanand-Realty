@@ -275,7 +275,7 @@ export default function InquiryModal({ isOpen, onClose }) {
                           onChange={handleChange}
                           onBlur={handleBlur}
                           className={`form-control ${touched.contactNumber && errors.contactNumber ? 'is-invalid' : touched.contactNumber && !errors.contactNumber ? 'is-valid' : ''}`}
-                          placeholder="e.g. +91 98765 43210"
+                          placeholder="e.g. +91 99094 21050"
                           type="tel"
                           required
                         />
@@ -306,7 +306,7 @@ export default function InquiryModal({ isOpen, onClose }) {
                           onChange={handleChange}
                           onBlur={handleBlur}
                           className={`form-control ${touched.alternateNumber && errors.alternateNumber ? 'is-invalid' : touched.alternateNumber && !errors.alternateNumber ? 'is-valid' : ''}`}
-                          placeholder="e.g. +91 98765 43210"
+                          placeholder="e.g. +91 99094 21050"
                           type="tel"
                         />
                         <FiPhone className="input-icon" />

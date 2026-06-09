@@ -332,7 +332,7 @@ export default function Staff() {
                   <label>Mobile Number</label>
                   <input
                     className="admin-form-control"
-                    placeholder="e.g. +91 98765 43210"
+                    placeholder="e.g. +91 99094 21050"
                     value={formData.mobileNumber}
                     onChange={(e) => setFormData({ ...formData, mobileNumber: e.target.value })}
                   />

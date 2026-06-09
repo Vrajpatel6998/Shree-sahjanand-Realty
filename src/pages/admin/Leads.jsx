@@ -4,7 +4,7 @@ import { FiSearch, FiPlus, FiEdit, FiTrash2, FiDownload, FiUser, FiMapPin, FiCal
 import './admin.css';
 
 export default function Leads() {
-  const { apiRequest, user, hasPermission } = useAuth();
+  const { apiRequest, user, hasPermission, token } = useAuth();
   
   // Lists and stats states
   const [leads, setLeads] = useState([]);
@@ -30,6 +30,9 @@ export default function Leads() {
 
   // Form states
   const [isEditing, setIsEditing] = useState(false);
+  const [formStep, setFormStep] = useState(1);
+  const [deleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
+  const [leadToDelete, setLeadToDelete] = useState(null);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -109,6 +112,7 @@ export default function Leads() {
     try {
       const params = new URLSearchParams({
         format,
+        token,
         ...(source && { source }),
         ...(status && { status }),
         ...(service && { service }),
@@ -140,35 +144,71 @@ export default function Leads() {
   const handleEditClick = (lead, e) => {
     e.stopPropagation();
     setIsEditing(true);
+    setFormStep(1);
     setSelectedLead(lead);
     setFormData({
-      firstName: lead.firstName,
-      lastName: lead.lastName,
-      contactNumber: lead.contactNumber,
+      firstName: lead.firstName || '',
+      lastName: lead.lastName || '',
+      contactNumber: lead.contactNumber || '',
       alternateNumber: lead.alternateNumber || '',
-      interestedService: lead.interestedService,
-      occupation: lead.occupation,
-      budget: lead.budget,
-      inquiryType: lead.inquiryType,
+      interestedService: lead.interestedService || 'Residential Property',
+      occupation: lead.occupation || 'Other',
+      budget: lead.budget || 'Under ₹25 Lakhs',
+      inquiryType: lead.inquiryType || 'Real Buyer',
       interestedArea: lead.interestedArea || '',
       allocatedStaffId: lead.allocatedStaffId || '',
       interestedForSiteVisit: lead.interestedForSiteVisit ? 'Yes' : 'No',
       reference: lead.reference || '',
       notes: lead.notes || '',
       followUpDate: lead.followUpDate ? lead.followUpDate.split('T')[0] : '',
-      status: lead.status,
+      status: lead.status || 'NEW_LEAD',
     });
     setFormOpen(true);
   };
 
-  // Handle Delete click
-  const handleDeleteClick = async (leadId, e) => {
-    e.stopPropagation();
-    if (!window.confirm('Are you sure you want to permanently delete this lead?')) return;
+  const validateStep = (step) => {
+    if (step === 1) {
+      if (!String(formData.firstName || '').trim()) return "First name is required";
+      if (!String(formData.lastName || '').trim()) return "Last name is required";
+      if (!String(formData.contactNumber || '').trim()) return "Contact number is required";
+      if (!String(formData.occupation || '').trim()) return "Occupation is required";
+    }
+    if (step === 2) {
+      if (!formData.interestedService) return "Interested service is required";
+      if (!String(formData.budget || '').trim()) return "Budget is required";
+      if (!formData.inquiryType) return "Inquiry type is required";
+      if (!String(formData.interestedArea || '').trim()) return "Interested area is required";
+    }
+    return null;
+  };
 
+  const handleNextStep = () => {
+    const error = validateStep(formStep);
+    if (error) {
+      alert(error);
+      return;
+    }
+    setFormStep(prev => prev + 1);
+  };
+
+  const handleBackStep = () => {
+    setFormStep(prev => Math.max(prev - 1, 1));
+  };
+
+  // Handle Delete click
+  const handleDeleteClick = (lead, e) => {
+    e.stopPropagation();
+    setLeadToDelete(lead);
+    setDeleteConfirmOpen(true);
+  };
+
+  const handleConfirmDelete = async () => {
+    if (!leadToDelete) return;
     try {
-      const res = await apiRequest(`/api/leads/${leadId}`, { method: 'DELETE' });
+      const res = await apiRequest(`/api/leads/${leadToDelete.id}`, { method: 'DELETE' });
       if (res.ok) {
+        setDeleteConfirmOpen(false);
+        setLeadToDelete(null);
         fetchLeads();
       } else {
         const errData = await res.json();
@@ -183,6 +223,18 @@ export default function Leads() {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     
+    // If hitting Enter on Step 1 or 2, redirect to handleNextStep
+    if (formStep < 3) {
+      handleNextStep();
+      return;
+    }
+    
+    // Final step validations
+    const step1Err = validateStep(1);
+    if (step1Err) { setFormStep(1); alert(step1Err); return; }
+    const step2Err = validateStep(2);
+    if (step2Err) { setFormStep(2); alert(step2Err); return; }
+
     const body = {
       ...formData,
       interestedForSiteVisit: formData.interestedForSiteVisit === 'Yes',
@@ -266,7 +318,7 @@ export default function Leads() {
             </>
           )}
           {hasPermission('create_leads') && (
-            <button className="admin-btn admin-btn--primary" onClick={() => { setIsEditing(false); setFormOpen(true); }}>
+            <button className="admin-btn admin-btn--primary" onClick={() => { setIsEditing(false); setFormStep(1); setFormData({ firstName: '', lastName: '', contactNumber: '', alternateNumber: '', interestedService: 'Residential Property', occupation: 'Business Owner', budget: 'Under ₹25 Lakhs', inquiryType: 'Real Buyer', interestedArea: '', allocatedStaffId: '', interestedForSiteVisit: 'No', reference: '', notes: '', followUpDate: '', status: 'NEW_LEAD' }); setFormOpen(true); }}>
               <FiPlus /> Add New Lead
             </button>
           )}
@@ -374,7 +426,7 @@ export default function Leads() {
                             </button>
                           )}
                           {!isReceptionist && hasPermission('delete_leads') && (
-                            <button className="admin-btn admin-btn--danger" style={{ padding: '6px 12px' }} onClick={(e) => handleDeleteClick(l.id, e)}>
+                            <button className="admin-btn admin-btn--danger" style={{ padding: '6px 12px' }} onClick={(e) => handleDeleteClick(l, e)}>
                               <FiTrash2 size={14} />
                             </button>
                           )}
@@ -423,201 +475,243 @@ export default function Leads() {
               <button className="admin-header__btn" style={{ border: 'none', background: 'none', fontSize: '1.25rem' }} onClick={() => setFormOpen(false)}>×</button>
             </div>
             
-            <form onSubmit={handleFormSubmit}>
+            <form onSubmit={handleFormSubmit} noValidate>
               <div className="admin-modal__body">
-                <div className="admin-form-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-                  
-                  <div className="admin-form-group">
-                    <label>First Name *</label>
-                    <input
-                      className="admin-form-control"
-                      value={formData.firstName}
-                      onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-                      required
-                    />
+                {/* Stepper Progress Bar */}
+                <div className="form-stepper">
+                  <div className={`step-item ${formStep >= 1 ? 'active' : ''} ${formStep > 1 ? 'completed' : ''}`}>
+                    <span className="step-number">1</span>
+                    <span className="step-label">Client Info</span>
                   </div>
-
-                  <div className="admin-form-group">
-                    <label>Last Name *</label>
-                    <input
-                      className="admin-form-control"
-                      value={formData.lastName}
-                      onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-                      required
-                    />
+                  <div className="step-connector"></div>
+                  <div className={`step-item ${formStep >= 2 ? 'active' : ''} ${formStep > 2 ? 'completed' : ''}`}>
+                    <span className="step-number">2</span>
+                    <span className="step-label">Requirements</span>
                   </div>
-
-                  <div className="admin-form-group">
-                    <label>Contact Number *</label>
-                    <input
-                      className="admin-form-control"
-                      value={formData.contactNumber}
-                      onChange={(e) => setFormData({ ...formData, contactNumber: e.target.value })}
-                      required
-                    />
+                  <div className="step-connector"></div>
+                  <div className={`step-item ${formStep >= 3 ? 'active' : ''}`}>
+                    <span className="step-number">3</span>
+                    <span className="step-label">Workflow</span>
                   </div>
+                </div>
 
-                  <div className="admin-form-group">
-                    <label>Alternative Contact Number</label>
-                    <input
-                      className="admin-form-control"
-                      value={formData.alternateNumber}
-                      onChange={(e) => setFormData({ ...formData, alternateNumber: e.target.value })}
-                    />
-                  </div>
+                {/* Step 1: Client Info */}
+                {formStep === 1 && (
+                  <div className="admin-form-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                    <div className="admin-form-group">
+                      <label>First Name *</label>
+                      <input
+                        className="admin-form-control"
+                        value={formData.firstName}
+                        onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                        required
+                      />
+                    </div>
 
-                  <div className="admin-form-group">
-                    <label>Interested Service *</label>
-                    <select
-                      className="admin-form-control"
-                      value={formData.interestedService}
-                      onChange={(e) => setFormData({ ...formData, interestedService: e.target.value })}
-                      required
-                    >
-                      <option value="Residential Property">Residential Property</option>
-                      <option value="Commercial Property">Commercial Property</option>
-                      <option value="Industrial Property">Industrial Property</option>
-                      <option value="Land Property">Land Property</option>
-                      <option value="Real Estate Loans">Real Estate Loans</option>
-                      <option value="Interior Solution">Interior Solution</option>
-                    </select>
-                  </div>
+                    <div className="admin-form-group">
+                      <label>Last Name *</label>
+                      <input
+                        className="admin-form-control"
+                        value={formData.lastName}
+                        onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                        required
+                      />
+                    </div>
 
-                  <div className="admin-form-group">
-                    <label>Occupation *</label>
-                    <input
-                      className="admin-form-control"
-                      value={formData.occupation}
-                      onChange={(e) => setFormData({ ...formData, occupation: e.target.value })}
-                      required
-                    />
-                  </div>
+                    <div className="admin-form-group">
+                      <label>Contact Number *</label>
+                      <input
+                        className="admin-form-control"
+                        value={formData.contactNumber}
+                        onChange={(e) => setFormData({ ...formData, contactNumber: e.target.value })}
+                        required
+                      />
+                    </div>
 
-                  <div className="admin-form-group">
-                    <label>Budget *</label>
-                    <input
-                      className="admin-form-control"
-                      value={formData.budget}
-                      onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                      required
-                    />
-                  </div>
+                    <div className="admin-form-group">
+                      <label>Alternative Contact Number</label>
+                      <input
+                        className="admin-form-control"
+                        value={formData.alternateNumber}
+                        onChange={(e) => setFormData({ ...formData, alternateNumber: e.target.value })}
+                      />
+                    </div>
 
-                  <div className="admin-form-group">
-                    <label>Inquiry Type *</label>
-                    <select
-                      className="admin-form-control"
-                      value={formData.inquiryType}
-                      onChange={(e) => setFormData({ ...formData, inquiryType: e.target.value })}
-                      required
-                    >
-                      <option value="Investor">Investor</option>
-                      <option value="Real Buyer">Real Buyer</option>
-                    </select>
-                  </div>
-
-                  <div className="admin-form-group">
-                    <label>Interested Area *</label>
-                    <input
-                      className="admin-form-control"
-                      value={formData.interestedArea}
-                      onChange={(e) => setFormData({ ...formData, interestedArea: e.target.value })}
-                      required
-                    />
-                  </div>
-
-                  <div className="admin-form-group">
-                    <label>Interested For Site Visit? *</label>
-                    <div style={{ display: 'flex', gap: '20px', marginTop: '12px' }}>
-                      <label style={{ display: 'flex', gap: '6px', cursor: 'pointer' }}>
-                        <input
-                          type="radio"
-                          name="siteVisit"
-                          value="Yes"
-                          checked={formData.interestedForSiteVisit === 'Yes'}
-                          onChange={() => setFormData({ ...formData, interestedForSiteVisit: 'Yes' })}
-                        /> Yes
-                      </label>
-                      <label style={{ display: 'flex', gap: '6px', cursor: 'pointer' }}>
-                        <input
-                          type="radio"
-                          name="siteVisit"
-                          value="No"
-                          checked={formData.interestedForSiteVisit === 'No'}
-                          onChange={() => setFormData({ ...formData, interestedForSiteVisit: 'No' })}
-                        /> No
-                      </label>
+                    <div className="admin-form-group" style={{ gridColumn: '1 / -1' }}>
+                      <label>Occupation *</label>
+                      <input
+                        className="admin-form-control"
+                        value={formData.occupation}
+                        onChange={(e) => setFormData({ ...formData, occupation: e.target.value })}
+                        required
+                      />
                     </div>
                   </div>
+                )}
 
-                  {!isReceptionist && (
+                {/* Step 2: Requirements */}
+                {formStep === 2 && (
+                  <div className="admin-form-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                     <div className="admin-form-group">
-                      <label>Allocated Staff</label>
+                      <label>Interested Service *</label>
                       <select
                         className="admin-form-control"
-                        value={formData.allocatedStaffId}
-                        onChange={(e) => setFormData({ ...formData, allocatedStaffId: e.target.value })}
+                        value={formData.interestedService}
+                        onChange={(e) => setFormData({ ...formData, interestedService: e.target.value })}
+                        required
                       >
-                        <option value="">Unallocated</option>
-                        {staffList.map(s => <option key={s.id} value={s.id}>{s.fullName}</option>)}
+                        <option value="Residential Property">Residential Property</option>
+                        <option value="Commercial Property">Commercial Property</option>
+                        <option value="Industrial Property">Industrial Property</option>
+                        <option value="Land Property">Land Property</option>
+                        <option value="Real Estate Loans">Real Estate Loans</option>
+                        <option value="Interior Solution">Interior Solution</option>
                       </select>
                     </div>
-                  )}
 
-                  <div className="admin-form-group">
-                    <label>Reference</label>
-                    <input
-                      className="admin-form-control"
-                      placeholder="e.g. Newspaper, Google"
-                      value={formData.reference}
-                      onChange={(e) => setFormData({ ...formData, reference: e.target.value })}
-                    />
+                    <div className="admin-form-group">
+                      <label>Inquiry Type *</label>
+                      <select
+                        className="admin-form-control"
+                        value={formData.inquiryType}
+                        onChange={(e) => setFormData({ ...formData, inquiryType: e.target.value })}
+                        required
+                      >
+                        <option value="Investor">Investor</option>
+                        <option value="Real Buyer">Real Buyer</option>
+                      </select>
+                    </div>
+
+                    <div className="admin-form-group">
+                      <label>Budget Range *</label>
+                      <input
+                        className="admin-form-control"
+                        value={formData.budget}
+                        onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
+                        required
+                      />
+                    </div>
+
+                    <div className="admin-form-group">
+                      <label>Interested Area *</label>
+                      <input
+                        className="admin-form-control"
+                        value={formData.interestedArea}
+                        onChange={(e) => setFormData({ ...formData, interestedArea: e.target.value })}
+                        required
+                      />
+                    </div>
+
+                    <div className="admin-form-group" style={{ gridColumn: '1 / -1' }}>
+                      <label>Interested For Site Visit? *</label>
+                      <div style={{ display: 'flex', gap: '20px', marginTop: '12px' }}>
+                        <label style={{ display: 'flex', gap: '6px', cursor: 'pointer', alignItems: 'center' }}>
+                          <input
+                            type="radio"
+                            name="siteVisit"
+                            value="Yes"
+                            checked={formData.interestedForSiteVisit === 'Yes'}
+                            onChange={() => setFormData({ ...formData, interestedForSiteVisit: 'Yes' })}
+                          /> Yes
+                        </label>
+                        <label style={{ display: 'flex', gap: '6px', cursor: 'pointer', alignItems: 'center' }}>
+                          <input
+                            type="radio"
+                            name="siteVisit"
+                            value="No"
+                            checked={formData.interestedForSiteVisit === 'No'}
+                            onChange={() => setFormData({ ...formData, interestedForSiteVisit: 'No' })}
+                          /> No
+                        </label>
+                      </div>
+                    </div>
                   </div>
+                )}
 
-                  <div className="admin-form-group">
-                    <label>Lead Status *</label>
-                    <select
-                      className="admin-form-control"
-                      value={formData.status}
-                      onChange={(e) => setFormData({ ...formData, status: e.target.value })}
-                      required
-                    >
-                      <option value="NEW_LEAD">New Lead</option>
-                      <option value="CONTACTED">Contacted</option>
-                      <option value="INTERESTED">Interested</option>
-                      <option value="SITE_VISIT_SCHEDULED">Site Visit Scheduled</option>
-                      <option value="NEGOTIATION">Negotiation</option>
-                      <option value="CLOSED_WON">Closed Won</option>
-                      <option value="CLOSED_LOST">Closed Lost</option>
-                    </select>
+                {/* Step 3: Workflow Details */}
+                {formStep === 3 && (
+                  <div className="admin-form-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                    {!isReceptionist && (
+                      <div className="admin-form-group">
+                        <label>Allocated Staff</label>
+                        <select
+                          className="admin-form-control"
+                          value={formData.allocatedStaffId}
+                          onChange={(e) => setFormData({ ...formData, allocatedStaffId: e.target.value })}
+                        >
+                          <option value="">Unallocated</option>
+                          {staffList.map(s => <option key={s.id} value={s.id}>{s.fullName}</option>)}
+                        </select>
+                      </div>
+                    )}
+
+                    <div className="admin-form-group">
+                      <label>Lead Status *</label>
+                      <select
+                        className="admin-form-control"
+                        value={formData.status}
+                        onChange={(e) => setFormData({ ...formData, status: e.target.value })}
+                        required
+                      >
+                        <option value="NEW_LEAD">New Lead</option>
+                        <option value="CONTACTED">Contacted</option>
+                        <option value="INTERESTED">Interested</option>
+                        <option value="SITE_VISIT_SCHEDULED">Site Visit Scheduled</option>
+                        <option value="NEGOTIATION">Negotiation</option>
+                        <option value="CLOSED_WON">Closed Won</option>
+                        <option value="CLOSED_LOST">Closed Lost</option>
+                      </select>
+                    </div>
+
+                    <div className="admin-form-group">
+                      <label>Reference</label>
+                      <input
+                        className="admin-form-control"
+                        placeholder="e.g. Newspaper, Google"
+                        value={formData.reference}
+                        onChange={(e) => setFormData({ ...formData, reference: e.target.value })}
+                      />
+                    </div>
+
+                    <div className="admin-form-group">
+                      <label>Follow-Up Date</label>
+                      <input
+                        type="date"
+                        className="admin-form-control"
+                        value={formData.followUpDate}
+                        onChange={(e) => setFormData({ ...formData, followUpDate: e.target.value })}
+                      />
+                    </div>
+
+                    <div className="admin-form-group" style={{ gridColumn: '1 / -1' }}>
+                      <label>Notes / Requirements</label>
+                      <textarea
+                        className="admin-form-control"
+                        rows="3"
+                        value={formData.notes}
+                        onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+                      />
+                    </div>
                   </div>
-
-                  <div className="admin-form-group">
-                    <label>Follow-Up Date</label>
-                    <input
-                      type="date"
-                      className="admin-form-control"
-                      value={formData.followUpDate}
-                      onChange={(e) => setFormData({ ...formData, followUpDate: e.target.value })}
-                    />
-                  </div>
-
-                  <div className="admin-form-group" style={{ gridColumn: '1 / -1' }}>
-                    <label>Notes / Requirements</label>
-                    <textarea
-                      className="admin-form-control"
-                      rows="3"
-                      value={formData.notes}
-                      onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                    />
-                  </div>
-
-                </div>
+                )}
               </div>
               
-              <div className="admin-modal__footer">
-                <button type="button" className="admin-btn admin-btn--secondary" onClick={() => setFormOpen(false)}>Cancel</button>
-                <button type="submit" className="admin-btn admin-btn--primary">Save Lead</button>
+              <div className="admin-modal__footer" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div>
+                  {formStep > 1 && (
+                    <button type="button" className="admin-btn admin-btn--secondary" onClick={handleBackStep}>
+                      Back
+                    </button>
+                  )}
+                </div>
+                <div style={{ display: 'flex', gap: '12px' }}>
+                  <button type="button" className="admin-btn admin-btn--secondary" onClick={() => setFormOpen(false)}>Cancel</button>
+                  {formStep < 3 ? (
+                    <button key="btn-next-step" type="button" className="admin-btn admin-btn--primary" onClick={handleNextStep}>Next</button>
+                  ) : (
+                    <button key="btn-save-lead" type="submit" className="admin-btn admin-btn--primary">Save Lead</button>
+                  )}
+                </div>
               </div>
             </form>
           </div>
@@ -776,6 +870,32 @@ export default function Leads() {
             
             <div className="admin-modal__footer">
               <button className="admin-btn admin-btn--secondary" onClick={() => { setDetailOpen(false); setDetailLead(null); }}>Close</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* --- CUSTOM DELETE CONFIRMATION MODAL --- */}
+      {deleteConfirmOpen && leadToDelete && (
+        <div className="admin-modal-overlay">
+          <div className="admin-modal" style={{ maxWidth: '450px' }}>
+            <div className="admin-modal__header">
+              <h3 style={{ fontSize: '1.15rem', fontWeight: '700', color: 'var(--admin-danger)' }}>⚠️ Confirm Hard Delete</h3>
+              <button className="admin-header__btn" style={{ border: 'none', background: 'none', fontSize: '1.25rem' }} onClick={() => { setDeleteConfirmOpen(false); setLeadToDelete(null); }}>×</button>
+            </div>
+            <div className="admin-modal__body" style={{ padding: '24px' }}>
+              <p style={{ fontSize: '0.95rem', lineHeight: '1.5', color: 'var(--admin-text-primary)' }}>
+                Are you sure you want to permanently delete lead <strong>L-{leadToDelete.id} ({leadToDelete.firstName} {leadToDelete.lastName})</strong>?
+              </p>
+              <div style={{ marginTop: '16px', padding: '12px', borderRadius: '8px', backgroundColor: 'rgba(239, 68, 68, 0.08)', border: '1px solid rgba(239, 68, 68, 0.2)' }}>
+                <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--admin-danger)', fontWeight: '600' }}>
+                  🚨 WARNING: This is a hard delete. All history logs, follow-ups, and records associated with this lead will be permanently erased. This action cannot be undone.
+                </p>
+              </div>
+            </div>
+            <div className="admin-modal__footer" style={{ display: 'flex', gap: '12px', justifyContent: 'flex-end' }}>
+              <button type="button" className="admin-btn admin-btn--secondary" onClick={() => { setDeleteConfirmOpen(false); setLeadToDelete(null); }}>Cancel</button>
+              <button type="button" className="admin-btn admin-btn--danger" onClick={handleConfirmDelete}>Confirm Delete</button>
             </div>
           </div>
         </div>

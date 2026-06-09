@@ -597,6 +597,10 @@ router.delete('/:id', authenticateToken, requirePermission('delete_leads'), asyn
       return res.status(404).json({ message: 'Lead not found' });
     }
 
+    // Delete related child records first to ensure referential integrity regardless of DB cascade support
+    await prisma.leadHistory.deleteMany({ where: { leadId } });
+    await prisma.followUp.deleteMany({ where: { leadId } });
+
     await prisma.lead.delete({
       where: { id: leadId },
     });

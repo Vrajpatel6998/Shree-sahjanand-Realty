@@ -113,8 +113,7 @@ export default function AdminLayout() {
         {/* SIDEBAR */}
         <aside className={`admin-sidebar ${mobileOpen ? 'mobile-open' : ''}`}>
           <div className="admin-sidebar__logo">
-            <span className="admin-sidebar__logo-icon">🏢</span>
-            <span className="admin-sidebar__logo-text">SSR CRM Panel</span>
+            <span className="admin-sidebar__logo-text">Shree Sahajanand Realty</span>
           </div>
 
           <nav className="admin-sidebar__menu">
@@ -227,7 +226,7 @@ export default function AdminLayout() {
             </button>
 
             <div className="admin-header__search">
-              <span style={{ fontSize: '0.85rem', fontWeight: '500', color: 'var(--admin-text-secondary)' }}>
+              <span style={{ fontSize: '1.25rem', fontWeight: '500', color: 'var(--admin-text-secondary)' }}>
                 Welcome, {user.fullName}
               </span>
             </div>

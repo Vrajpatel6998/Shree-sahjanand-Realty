@@ -66,7 +66,18 @@ export default function Navbar({ onInquiryOpen }) {
   return (
     <>
       <div className={`header-container ${scrolled ? 'header-container--scrolled' : ''}`}>
+        
+
+        {/* Container wrapper to align logo bounds */}
+        <div className="header-logo-align-wrapper container">
+          {/* Overlapping logo for desktop */}
+          <Link to="/" className={`header-logo-overlay ${scrolled ? 'header-logo-overlay--scrolled' : ''}`}>
+            <img src={logo} alt="Shree Sahjanand Realty Logo" />
+          </Link>
+        </div>
+
         <TopBar settings={settings} scrolled={scrolled} />
+        
         <motion.nav
           className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}
           initial={{ y: -80 }}
@@ -74,14 +85,10 @@ export default function Navbar({ onInquiryOpen }) {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
         <div className="navbar__inner container">
-          {/* Logo */}
-          <Link to="/" className="navbar__logo">
-            <img src={logo} alt="Shree Sahjanand Realty" />
-            <div className="navbar__logo-text">
-              <span className="navbar__logo-name">Shree Sahjanand</span>
-              <span className="navbar__logo-sub">Realty</span>
-            </div>
-          </Link>
+
+
+          {/* Desktop logo spacer */}
+          <div className="navbar__logo-spacer" />
 
           {/* Desktop Nav */}
           <ul className="navbar__links">

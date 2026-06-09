@@ -22,7 +22,7 @@ const contactCards = [
   {
     icon: FiPhone,
     title: 'Call Us',
-    lines: [siteInfo.phone, siteInfo.phone2],
+    lines: [siteInfo.phone, siteInfo.phone2].filter(Boolean),
     href: `tel:${siteInfo.phone}`,
     color: '#1a3c8e',
   },
@@ -31,14 +31,14 @@ const contactCards = [
     title: 'Email Us',
     lines: [siteInfo.email, siteInfo.email2],
     href: `mailto:${siteInfo.email}`,
-    color: '#00b4d8',
+    color: '#1a3c8e',
   },
   {
     icon: FiMapPin,
     title: 'Visit Us',
     lines: [siteInfo.address],
     href: '#map',
-    color: '#c9a84c',
+    color: '#1a3c8e',
   },
 ]
 
@@ -391,7 +391,7 @@ export default function Contact() {
                           onChange={handleChange}
                           onBlur={handleBlur}
                           className={`form-control ${touched.contactNumber && errors.contactNumber ? 'is-invalid' : touched.contactNumber && !errors.contactNumber ? 'is-valid' : ''}`}
-                          placeholder="e.g. +91 98765 43210"
+                          placeholder="e.g. +91 99094 21050"
                           type="tel"
                           required
                         />
@@ -422,7 +422,7 @@ export default function Contact() {
                           onChange={handleChange}
                           onBlur={handleBlur}
                           className={`form-control ${touched.alternateNumber && errors.alternateNumber ? 'is-invalid' : touched.alternateNumber && !errors.alternateNumber ? 'is-valid' : ''}`}
-                          placeholder="e.g. +91 98765 43210"
+                          placeholder="e.g. +91 99094 21050"
                           type="tel"
                         />
                         <FiPhone className="input-icon" />

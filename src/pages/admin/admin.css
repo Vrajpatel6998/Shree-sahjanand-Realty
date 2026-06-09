@@ -82,11 +82,13 @@
 }
 
 .admin-sidebar__logo {
-  padding: 24px;
+  height: 80px;
+  padding: 0 24px;
   display: flex;
   align-items: center;
   gap: 12px;
   border-bottom: 1px solid var(--admin-border);
+  box-sizing: border-box;
 }
 
 .admin-sidebar__logo-icon {
@@ -165,10 +167,9 @@
 
 /* --- Header / Topbar --- */
 .admin-header {
-  height: 70px;
-  background-color: var(--admin-glass-bg);
-  backdrop-filter: var(--admin-glass-blur);
-  border-bottom: 1px solid var(--admin-glass-border);
+  height: 80px;
+  background-color: var(--admin-bg-secondary);
+  border-bottom: 1px solid var(--admin-border);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -283,7 +284,7 @@
 }
 
 .admin-title-block__title {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: -0.02em;
 }
@@ -798,4 +799,74 @@
   display: flex;
   justify-content: flex-end;
   gap: 12px;
+}
+
+/* --- Form Stepper --- */
+.form-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  background-color: var(--admin-bg-tertiary);
+  padding: 12px 20px;
+  border-radius: var(--admin-radius);
+  border: 1px solid var(--admin-border);
+}
+
+.step-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--admin-text-muted);
+  font-weight: 500;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+}
+
+.step-item.active {
+  color: var(--admin-primary);
+  font-weight: 600;
+}
+
+.step-item.completed {
+  color: var(--admin-success);
+}
+
+.step-number {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: var(--admin-border);
+  color: var(--admin-text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.step-item.active .step-number {
+  background-color: var(--admin-primary);
+  color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(26, 60, 142, 0.15);
+}
+
+.step-item.completed .step-number {
+  background-color: var(--admin-success);
+  color: #ffffff;
+}
+
+.step-connector {
+  flex: 1;
+  height: 2px;
+  background-color: var(--admin-border);
+  margin: 0 12px;
+}
+
+@media (max-width: 576px) {
+  .step-label {
+    display: none;
+  }
 }
