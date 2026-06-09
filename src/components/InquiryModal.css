@@ -19,6 +19,8 @@
   position: sticky;
   top: 0;
   z-index: 2;
+  border-top-left-radius: var(--radius-xl);
+  border-top-right-radius: var(--radius-xl);
 }
 
 .inquiry-modal__header .section-label {
@@ -104,11 +106,19 @@
 
 /* Scrollbar */
 .inquiry-modal::-webkit-scrollbar {
-  width: 4px;
+  width: 6px;
+}
+.inquiry-modal::-webkit-scrollbar-track {
+  background: transparent;
+  margin-top: 16px;
+  margin-bottom: 16px;
 }
 .inquiry-modal::-webkit-scrollbar-thumb {
+  background: rgba(0, 180, 216, 0.4);
+  border-radius: 10px;
+}
+.inquiry-modal::-webkit-scrollbar-thumb:hover {
   background: var(--accent);
-  border-radius: 2px;
 }
 
 @media (max-width: 600px) {

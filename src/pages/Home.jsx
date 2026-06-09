@@ -1,4 +1,5 @@
 import HeroSlider from '../components/HeroSlider'
+import ServicesMarquee from '../components/ServicesMarquee'
 import StatsSection from '../components/StatsSection'
 import AboutSection from '../components/AboutSection'
 import ServicesSection from '../components/ServicesSection'
@@ -11,6 +12,7 @@ export default function Home({ onInquiryOpen }) {
   return (
     <>
       <HeroSlider onInquiryOpen={onInquiryOpen} />
+      <ServicesMarquee />
       <StatsSection />
       <AboutSection />
       <ServicesSection />

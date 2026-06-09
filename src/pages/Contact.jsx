@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FiPhone, FiMail, FiMapPin, FiSend, FiUser, FiBriefcase, FiDollarSign, FiAward, FiTag, FiSearch } from 'react-icons/fi'
@@ -49,6 +49,19 @@ export default function Contact() {
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [shakeActive, setShakeActive] = useState(false)
+  const [currentTaglineIdx, setCurrentTaglineIdx] = useState(0)
+
+  const taglineLines = [
+    <span key="award" className="contact-tagline-item"><FiAward style={{ color: 'var(--accent)' }} /> Your Trusted Real Estate Partner Since 2007</span>,
+    <span key="phone" className="contact-tagline-item"><FiPhone style={{ color: 'var(--accent)' }} /> Contact us for free legal guidance & property consulting!</span>
+  ]
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTaglineIdx(prev => (prev + 1) % taglineLines.length)
+    }, 4500)
+    return () => clearInterval(timer)
+  }, [taglineLines.length])
 
   const validateField = (name, value, allValues) => {
     let error = ''
@@ -261,6 +274,22 @@ export default function Contact() {
               <div className="contact-map__address">
                 <FiMapPin style={{ color: 'var(--accent)', flexShrink: 0, marginTop: 3 }} />
                 <p>{siteInfo.address}</p>
+              </div>
+
+              {/* Tagline Announcement (Marquee) */}
+              <div className="contact-map__announcement">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentTaglineIdx}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -12 }}
+                    transition={{ duration: 0.4 }}
+                    className="contact-map__announcement-inner"
+                  >
+                    {taglineLines[currentTaglineIdx]}
+                  </motion.div>
+                </AnimatePresence>
               </div>
             </motion.div>
 

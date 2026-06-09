@@ -131,10 +131,6 @@ export default function Navbar({ onInquiryOpen }) {
 
           {/* CTA Buttons */}
           <div className="navbar__actions">
-            <a href={`tel:${settings?.phone || '+919876543210'}`} className="navbar__phone">
-              <FiPhone />
-              <span>{settings?.phone || '+91 98765 43210'}</span>
-            </a>
             <button className="btn btn-accent btn-sm navbar__cta" onClick={onInquiryOpen}>
               Inquiry Now
             </button>
@@ -215,9 +211,6 @@ export default function Navbar({ onInquiryOpen }) {
               </ul>
 
               <div className="navbar__mobile-cta">
-                <a href={`tel:${settings?.phone || '+919876543210'}`} className="btn btn-outline-primary w-full" style={{ justifyContent: 'center' }}>
-                  <FiPhone /> {settings?.phone || '+91 98765 43210'}
-                </a>
                 <button className="btn btn-accent w-full" style={{ justifyContent: 'center' }} onClick={onInquiryOpen}>
                   Inquiry Now
                 </button>

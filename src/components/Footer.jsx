@@ -45,10 +45,7 @@ export default function Footer() {
   const socialIcons = [
     { icon: FiFacebook, href: settings?.social?.facebook || siteInfo.social.facebook, label: 'Facebook' },
     { icon: FiInstagram, href: settings?.social?.instagram || siteInfo.social.instagram, label: 'Instagram' },
-    { icon: FiTwitter, href: settings?.social?.twitter || siteInfo.social.twitter, label: 'Twitter' },
     { icon: FiYoutube, href: settings?.social?.youtube || siteInfo.social.youtube, label: 'YouTube' },
-    { icon: FiLinkedin, href: settings?.social?.linkedin || siteInfo.social.linkedin, label: 'LinkedIn' },
-    { icon: FaWhatsapp, href: settings?.social?.whatsapp || siteInfo.social.whatsapp, label: 'WhatsApp' },
   ]
 
   return (

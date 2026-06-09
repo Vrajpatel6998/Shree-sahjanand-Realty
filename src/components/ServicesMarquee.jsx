@@ -1,27 +1,37 @@
+import { useState } from 'react'
+import { services } from '../data/siteData.js'
 import './ServicesMarquee.css'
 
-const items = [
-  "Residential Properties",
-  "Commercial Properties",
-  "Industrial Properties",
-  "Land Properties",
-  "Real Estate Loans",
-  "Interior Design Services",
-]
-
 export default function ServicesMarquee() {
+  const [isPaused, setIsPaused] = useState(false)
+  
+  // Extract service titles
+  const items = services.map(s => s.title)
   // Duplicate for seamless loop
   const allItems = [...items, ...items, ...items]
 
   return (
-    <div className="marquee-wrapper">
-      <div className="marquee-track">
-        {allItems.map((item, i) => (
-          <span key={i} className="marquee-item">
-            <span className="marquee-dot">✦</span>
-            {item}
-          </span>
-        ))}
+    <div 
+      className="marquee-wrapper"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
+      <div className="marquee-label">
+        <span className="marquee-label-icon">✦</span>
+        <span className="marquee-label-text">Special Services</span>
+      </div>
+      <div className="marquee-content">
+        <div 
+          className="marquee-track"
+          style={{ animationPlayState: isPaused ? 'paused' : 'running' }}
+        >
+          {allItems.map((item, i) => (
+            <span key={i} className="marquee-item">
+              <span className="marquee-dot">✦</span>
+              {item}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   )

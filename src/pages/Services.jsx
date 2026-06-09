@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { FiArrowRight, FiCheckCircle } from 'react-icons/fi'
 import { services } from '../data/siteData.js'
 import CTASection from '../components/CTASection'
+import BeforeAfterSlider from '../components/BeforeAfterSlider'
 import './Services.css'
 
 export default function Services({ onInquiryOpen }) {
@@ -58,12 +59,21 @@ export default function Services({ onInquiryOpen }) {
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.8 }}
               >
-                <div className="service-detail__img-wrap">
-                  <img src={service.image} alt={service.title} />
-                  <div className="service-detail__img-badge" style={{ background: service.gradient }}>
-                    <span><service.icon size={26} /></span>
+                {service.id === 'interior' ? (
+                  <BeforeAfterSlider 
+                    beforeImage="https://images.unsplash.com/photo-1513694203232-719a280e022f?w=1200&q=80" 
+                    afterImage={service.image} 
+                    beforeLabel="Simple Room"
+                    afterLabel="Designed Interior"
+                  />
+                ) : (
+                  <div className="service-detail__img-wrap">
+                    <img src={service.image} alt={service.title} />
+                    <div className="service-detail__img-badge">
+                      <span><service.icon size={26} /></span>
+                    </div>
                   </div>
-                </div>
+                )}
               </motion.div>
 
               {/* Content */}
