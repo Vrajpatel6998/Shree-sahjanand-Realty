@@ -190,9 +190,16 @@
 }
 
 .navbar__logo-spacer {
-  width: 380px;
+  width: 320px;
   height: 1px;
   flex-shrink: 0;
+  transition: width var(--transition-mid);
+}
+
+@media (max-width: 1200px) {
+  .navbar__logo-spacer {
+    width: 310px;
+  }
 }
 
 /* Desktop Nav Links */

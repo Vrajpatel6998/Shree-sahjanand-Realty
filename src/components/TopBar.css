@@ -13,9 +13,10 @@
 }
 
 .top-bar__logo-spacer {
-  width: 380px;
+  width: 330px;
   height: 1px;
   flex-shrink: 0;
+  transition: width var(--transition-mid);
 }
 
 .top-bar__inner {
@@ -121,6 +122,19 @@
   }
   .top-bar__socials {
     justify-content: center;
+  }
+}
+
+@media (max-width: 1200px) {
+  .top-bar__logo-spacer {
+    width: 320px;
+  }
+}
+
+@media (max-width: 1150px) {
+  .top-bar__contacts a[href^="mailto:"],
+  .top-bar__contacts .top-bar__divider {
+    display: none;
   }
 }
 

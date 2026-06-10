@@ -10,7 +10,7 @@ export default function TopBar({ settings, scrolled }) {
   
   const lines = [
     <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}><FiAward style={{ color: 'var(--accent)' }} /> Your Trusted Real Estate Partner Since 2007</span>,
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}><FiPhone style={{ color: 'var(--accent)' }} /> Contact us for free legal guidance & property consulting!</span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}><FiPhone style={{ color: 'var(--accent)' }} /> Contact us for free legal guidance!</span>
   ]
 
   useEffect(() => {
