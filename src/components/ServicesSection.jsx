@@ -2,10 +2,11 @@ import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useInView } from 'framer-motion'
 import { FiArrowRight } from 'react-icons/fi'
-import { services } from '../data/siteData.js'
+import { useSite } from '../context/SiteContext'
 import './ServicesSection.css'
 
 export default function ServicesSection() {
+  const { services } = useSite()
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, amount: 0.1 })
 

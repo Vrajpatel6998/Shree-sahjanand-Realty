@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FiPhone, FiMail, FiMapPin, FiSend, FiUser, FiBriefcase, FiDollarSign, FiAward, FiTag, FiSearch } from 'react-icons/fi'
-import { siteInfo, inquiryFormOptions } from '../data/siteData.js'
+import { useSite } from '../context/SiteContext'
+import { inquiryFormOptions } from '../data/siteData.js'
 import ServicesMarquee from '../components/ServicesMarquee'
 import './Contact.css'
 
@@ -18,36 +19,37 @@ const initialForm = {
   reference: ''
 }
 
-const contactCards = [
-  {
-    icon: FiPhone,
-    title: 'Call Us',
-    lines: [siteInfo.phone, siteInfo.phone2].filter(Boolean),
-    href: `tel:${siteInfo.phone}`,
-    color: '#1a3c8e',
-  },
-  {
-    icon: FiMail,
-    title: 'Email Us',
-    lines: [siteInfo.email, siteInfo.email2],
-    href: `mailto:${siteInfo.email}`,
-    color: '#1a3c8e',
-  },
-  {
-    icon: FiMapPin,
-    title: 'Visit Us',
-    lines: [siteInfo.address],
-    href: '#map',
-    color: '#1a3c8e',
-  },
-]
-
 export default function Contact() {
+  const { siteInfo } = useSite()
   const [form, setForm] = useState(initialForm)
   const [errors, setErrors] = useState({})
   const [touched, setTouched] = useState({})
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
+
+  const contactCards = [
+    {
+      icon: FiPhone,
+      title: 'Call Us',
+      lines: [siteInfo.phone, siteInfo.phone2].filter(Boolean),
+      href: `tel:${siteInfo.phone}`,
+      color: '#1a3c8e',
+    },
+    {
+      icon: FiMail,
+      title: 'Email Us',
+      lines: [siteInfo.email, siteInfo.email2].filter(Boolean),
+      href: `mailto:${siteInfo.email}`,
+      color: '#1a3c8e',
+    },
+    {
+      icon: FiMapPin,
+      title: 'Visit Us',
+      lines: [siteInfo.address],
+      href: '#map',
+      color: '#1a3c8e',
+    },
+  ]
   const [shakeActive, setShakeActive] = useState(false)
   const [currentTaglineIdx, setCurrentTaglineIdx] = useState(0)
 

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { FiPhone, FiMail, FiMapPin, FiFacebook, FiInstagram, FiYoutube, FiLinkedin, FiSend, FiTwitter } from 'react-icons/fi'
 import { FaWhatsapp } from 'react-icons/fa'
 import logo from '../assets/logo.png'
-import { siteInfo, services } from '../data/siteData.js'
+import { useSite } from '../context/SiteContext'
 import './Footer.css'
 
 const quickLinks = [
@@ -17,21 +17,7 @@ const quickLinks = [
 export default function Footer() {
   const [email, setEmail] = useState('')
   const [newsletterStatus, setNewsletterStatus] = useState(null)
-  const [settings, setSettings] = useState(siteInfo)
-
-  useEffect(() => {
-    fetch('/api/settings')
-      .then(res => {
-        if (!res.ok) throw new Error('Network response not ok');
-        return res.json();
-      })
-      .then(data => {
-        if (data && typeof data === 'object' && data.social) {
-          setSettings(data);
-        }
-      })
-      .catch(err => console.warn('Offline settings fallback:', err))
-  }, [])
+  const { siteInfo, services } = useSite()
 
   const handleNewsletter = (e) => {
     e.preventDefault()
@@ -43,9 +29,9 @@ export default function Footer() {
   }
 
   const socialIcons = [
-    { icon: FiFacebook, href: settings?.social?.facebook || siteInfo.social.facebook, label: 'Facebook' },
-    { icon: FiInstagram, href: settings?.social?.instagram || siteInfo.social.instagram, label: 'Instagram' },
-    { icon: FiYoutube, href: settings?.social?.youtube || siteInfo.social.youtube, label: 'YouTube' },
+    { icon: FiFacebook, href: siteInfo.social?.facebook, label: 'Facebook' },
+    { icon: FiInstagram, href: siteInfo.social?.instagram, label: 'Instagram' },
+    { icon: FiYoutube, href: siteInfo.social?.youtube, label: 'YouTube' },
   ]
 
   return (
@@ -58,18 +44,20 @@ export default function Footer() {
               <Link to="/" className="footer__logo">
                 <img src={logo} alt="Shree Sahjanand Realty" />
                 <div>
-                  <div className="footer__logo-name">{settings?.name || siteInfo.name}</div>
-                  <div className="footer__logo-tag">{settings?.tagline || siteInfo.tagline}</div>
+                  <div className="footer__logo-name">{siteInfo.name}</div>
+                  <div className="footer__logo-tag">{siteInfo.tagline}</div>
                 </div>
               </Link>
               <p className="footer__desc">
-                {settings?.subtagline || "Gujarat's most trusted real estate consultancy providing residential, commercial, industrial, land, loan, and interior design services since 2007."}
+                {siteInfo.subtagline || "Gujarat's most trusted real estate consultancy providing residential, commercial, industrial, land, loan, and interior design services since 2007."}
               </p>
               <div className="footer__socials">
                 {socialIcons.map(({ icon: Icon, href, label }) => (
-                  <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="footer__social-btn" aria-label={label}>
-                    <Icon />
-                  </a>
+                  href && (
+                    <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="footer__social-btn" aria-label={label}>
+                      <Icon />
+                    </a>
+                  )
                 ))}
               </div>
             </div>
@@ -108,26 +96,26 @@ export default function Footer() {
             <div className="footer__col">
               <h4 className="footer__col-title">Contact Us</h4>
               <div className="footer__contact-list">
-                <a href={`tel:${settings?.phone || siteInfo.phone}`} className="footer__contact-item">
+                <a href={`tel:${siteInfo.phone}`} className="footer__contact-item">
                   <div className="footer__contact-icon"><FiPhone /></div>
                   <div>
                     <div className="footer__contact-label">Phone</div>
-                    <div className="footer__contact-value">{settings?.phone || siteInfo.phone}</div>
-                    { (settings?.phone2 || siteInfo.phone2) && <div className="footer__contact-value">{settings?.phone2 || siteInfo.phone2}</div> }
+                    <div className="footer__contact-value">{siteInfo.phone}</div>
+                    { siteInfo.phone2 && <div className="footer__contact-value">{siteInfo.phone2}</div> }
                   </div>
                 </a>
-                <a href={`mailto:${settings?.email || siteInfo.email}`} className="footer__contact-item">
+                <a href={`mailto:${siteInfo.email}`} className="footer__contact-item">
                   <div className="footer__contact-icon"><FiMail /></div>
                   <div>
                     <div className="footer__contact-label">Email</div>
-                    <div className="footer__contact-value">{settings?.email || siteInfo.email}</div>
+                    <div className="footer__contact-value">{siteInfo.email}</div>
                   </div>
                 </a>
                 <div className="footer__contact-item">
                   <div className="footer__contact-icon"><FiMapPin /></div>
                   <div>
                     <div className="footer__contact-label">Office Address</div>
-                    <div className="footer__contact-value footer__contact-address">{settings?.address || siteInfo.address}</div>
+                    <div className="footer__contact-value footer__contact-address">{siteInfo.address}</div>
                   </div>
                 </div>
               </div>

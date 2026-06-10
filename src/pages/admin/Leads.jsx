@@ -157,6 +157,7 @@ export default function Leads() {
       inquiryType: lead.inquiryType || 'Real Buyer',
       interestedArea: lead.interestedArea || '',
       allocatedStaffId: lead.allocatedStaffId || '',
+      allocatedStaffName: lead.allocatedStaff ? lead.allocatedStaff.fullName : '',
       interestedForSiteVisit: lead.interestedForSiteVisit ? 'Yes' : 'No',
       reference: lead.reference || '',
       notes: lead.notes || '',
@@ -318,7 +319,7 @@ export default function Leads() {
             </>
           )}
           {hasPermission('create_leads') && (
-            <button className="admin-btn admin-btn--primary" onClick={() => { setIsEditing(false); setFormStep(1); setFormData({ firstName: '', lastName: '', contactNumber: '', alternateNumber: '', interestedService: 'Residential Property', occupation: 'Business Owner', budget: 'Under ₹25 Lakhs', inquiryType: 'Real Buyer', interestedArea: '', allocatedStaffId: '', interestedForSiteVisit: 'No', reference: '', notes: '', followUpDate: '', status: 'NEW_LEAD' }); setFormOpen(true); }}>
+            <button className="admin-btn admin-btn--primary" onClick={() => { setIsEditing(false); setFormStep(1); setFormData({ firstName: '', lastName: '', contactNumber: '', alternateNumber: '', interestedService: 'Residential Property', occupation: 'Business Owner', budget: 'Under ₹25 Lakhs', inquiryType: 'Real Buyer', interestedArea: '', allocatedStaffId: '', allocatedStaffName: '', interestedForSiteVisit: 'No', reference: '', notes: '', followUpDate: '', status: 'NEW_LEAD' }); setFormOpen(true); }}>
               <FiPlus /> Add New Lead
             </button>
           )}
@@ -344,7 +345,7 @@ export default function Leads() {
             <option value="RECEPTION">Reception Leads</option>
           </select>
 
-          <select className="admin-form-control" value={status} onChange={(e) => { setStatus(e.target.value); setCurrentPage(1); }}>
+          {/* <select className="admin-form-control" value={status} onChange={(e) => { setStatus(e.target.value); setCurrentPage(1); }}>
             <option value="">All Statuses</option>
             <option value="NEW_LEAD">New Lead</option>
             <option value="CONTACTED">Contacted</option>
@@ -353,7 +354,7 @@ export default function Leads() {
             <option value="NEGOTIATION">Negotiation</option>
             <option value="CLOSED_WON">Closed Won</option>
             <option value="CLOSED_LOST">Closed Lost</option>
-          </select>
+          </select> */}
 
           <select className="admin-form-control" value={service} onChange={(e) => { setService(e.target.value); setCurrentPage(1); }}>
             <option value="">All Services</option>
@@ -365,12 +366,14 @@ export default function Leads() {
             <option value="Interior Solution">Interior Solution</option>
           </select>
 
-          {!isReceptionist && (
+          {/* {!isReceptionist && (
             <select className="admin-form-control" value={staffId} onChange={(e) => { setStaffId(e.target.value); setCurrentPage(1); }}>
               <option value="">All Staff</option>
               {staffList.map(s => <option key={s.id} value={s.id}>{s.fullName}</option>)}
             </select>
-          )}
+          )} */}
+
+
         </div>
       </div>
 
@@ -385,8 +388,8 @@ export default function Leads() {
                   <th>Client Name</th>
                   <th>Contact</th>
                   <th>Service</th>
-                  <th>Staff Allocated</th>
-                  <th>Status</th>
+                  {/* <th>Staff Allocated</th> */}
+                  {/* <th>Status</th> */}
                   <th>Created</th>
                   <th style={{ textAlign: 'right' }}>Actions</th>
                 </tr>
@@ -394,13 +397,13 @@ export default function Leads() {
               <tbody>
                 {loading ? (
                   <tr>
-                    <td colSpan="8" style={{ textAlign: 'center', padding: '40px' }}>
+                    <td colSpan="6" style={{ textAlign: 'center', padding: '40px' }}>
                       <div className="contact-loader" style={{ margin: '0 auto', width: '32px', height: '32px' }}></div>
                     </td>
                   </tr>
                 ) : leads.length === 0 ? (
                   <tr>
-                    <td colSpan="8" style={{ textAlign: 'center', padding: '32px', color: 'var(--admin-text-muted)' }}>
+                    <td colSpan="6" style={{ textAlign: 'center', padding: '32px', color: 'var(--admin-text-muted)' }}>
                       No leads matching filters found.
                     </td>
                   </tr>
@@ -411,12 +414,12 @@ export default function Leads() {
                       <td style={{ fontWeight: '600' }}>{l.firstName} {l.lastName}</td>
                       <td>{l.contactNumber}</td>
                       <td>{l.interestedService}</td>
-                      <td>{l.allocatedStaff ? l.allocatedStaff.fullName : <span style={{ color: 'var(--admin-text-muted)' }}>Unallocated</span>}</td>
-                      <td>
+                      {/* <td>{l.allocatedStaff ? l.allocatedStaff.fullName : <span style={{ color: 'var(--admin-text-muted)' }}>Unallocated</span>}</td> */}
+                      {/* <td>
                         <span className={`status-tag status-tag--${l.status.toLowerCase().replace(/_/g, '')}`}>
                           {getStatusLabel(l.status)}
                         </span>
-                      </td>
+                      </td> */}
                       <td>{new Date(l.createdAt).toLocaleDateString()}</td>
                       <td style={{ textAlign: 'right' }} onClick={(e) => e.stopPropagation()}>
                         <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end' }}>
@@ -634,18 +637,25 @@ export default function Leads() {
                     {!isReceptionist && (
                       <div className="admin-form-group">
                         <label>Allocated Staff</label>
-                        <select
+                        <input
+                          type="text"
                           className="admin-form-control"
-                          value={formData.allocatedStaffId}
-                          onChange={(e) => setFormData({ ...formData, allocatedStaffId: e.target.value })}
-                        >
-                          <option value="">Unallocated</option>
-                          {staffList.map(s => <option key={s.id} value={s.id}>{s.fullName}</option>)}
-                        </select>
+                          placeholder="Enter staff name..."
+                          value={formData.allocatedStaffName || ''}
+                          onChange={(e) => {
+                            const name = e.target.value;
+                            const matched = staffList.find(s => s.fullName.toLowerCase() === name.trim().toLowerCase());
+                            setFormData({
+                              ...formData,
+                              allocatedStaffName: name,
+                              allocatedStaffId: matched ? matched.id : ''
+                            });
+                          }}
+                        />
                       </div>
                     )}
 
-                    <div className="admin-form-group">
+                    {/* <div className="admin-form-group">
                       <label>Lead Status *</label>
                       <select
                         className="admin-form-control"
@@ -661,7 +671,7 @@ export default function Leads() {
                         <option value="CLOSED_WON">Closed Won</option>
                         <option value="CLOSED_LOST">Closed Lost</option>
                       </select>
-                    </div>
+                    </div> */}
 
                     <div className="admin-form-group">
                       <label>Reference</label>
@@ -673,7 +683,7 @@ export default function Leads() {
                       />
                     </div>
 
-                    <div className="admin-form-group">
+                    {/* <div className="admin-form-group">
                       <label>Follow-Up Date</label>
                       <input
                         type="date"
@@ -681,7 +691,9 @@ export default function Leads() {
                         value={formData.followUpDate}
                         onChange={(e) => setFormData({ ...formData, followUpDate: e.target.value })}
                       />
-                    </div>
+                    </div> */}
+
+
 
                     <div className="admin-form-group" style={{ gridColumn: '1 / -1' }}>
                       <label>Notes / Requirements</label>
@@ -741,7 +753,7 @@ export default function Leads() {
               >
                 <FiUser style={{ marginRight: '6px' }} /> Client Profile
               </button>
-              <button
+              {/* <button
                 className={`admin-sidebar__link`}
                 style={{ padding: '12px 16px', borderRadius: 0, borderBottom: activeTab === 'timeline' ? '2px solid var(--admin-primary)' : 'none', color: activeTab === 'timeline' ? 'var(--admin-primary)' : 'var(--admin-text-secondary)', background: 'none', fontWeight: '600', cursor: 'pointer' }}
                 onClick={() => setActiveTab('timeline')}
@@ -754,7 +766,7 @@ export default function Leads() {
                 onClick={() => setActiveTab('followups')}
               >
                 <FiCalendar style={{ marginRight: '6px' }} /> Follow-Ups ({detailLead?.followUps?.length || 0})
-              </button>
+              </button> */}
             </div>
 
             <div className="admin-modal__body">
@@ -787,7 +799,9 @@ export default function Leads() {
                     </p>
                   </div>
                 </div>
-              ) : activeTab === 'timeline' ? (
+              ) : null}
+              {/* Commented out timeline and follow-ups sections for minimal client version
+              activeTab === 'timeline' ? (
                 <div>
                   <h4 style={{ fontSize: '0.95rem', fontWeight: '600', marginBottom: '16px' }}>Lead Lifecycle Log</h4>
                   <div className="timeline">
@@ -815,7 +829,6 @@ export default function Leads() {
                   <h4 style={{ fontSize: '0.95rem', fontWeight: '600', marginBottom: '16px' }}>Scheduled Reminders</h4>
                   <div style={{ display: 'grid', gridTemplateColumns: '3fr 2fr', gap: '20px' }}>
                     
-                    {/* List follow ups */}
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                       {!detailLead ? (
                         <div className="contact-loader"></div>
@@ -836,8 +849,7 @@ export default function Leads() {
                         ))
                       )}
                     </div>
-
-                    {/* Schedule new follow up */}
+ 
                     <form onSubmit={handleFollowUpSubmit} style={{ borderLeft: '1px solid var(--admin-border)', paddingLeft: '20px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
                       <h4 style={{ fontSize: '0.9rem', fontWeight: '600' }}>New Follow-Up</h4>
                       <div className="admin-form-group">
@@ -862,10 +874,10 @@ export default function Leads() {
                       </div>
                       <button type="submit" className="admin-btn admin-btn--primary">Schedule</button>
                     </form>
-
+ 
                   </div>
                 </div>
-              )}
+              ) */}`
             </div>
             
             <div className="admin-modal__footer">

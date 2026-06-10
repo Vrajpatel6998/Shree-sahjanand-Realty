@@ -2,12 +2,13 @@ import { useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { FiArrowRight, FiCheckCircle } from 'react-icons/fi'
-import { services } from '../data/siteData.js'
+import { useSite } from '../context/SiteContext'
 import CTASection from '../components/CTASection'
 import BeforeAfterSlider from '../components/BeforeAfterSlider'
 import './Services.css'
 
 export default function Services({ onInquiryOpen }) {
+  const { services } = useSite()
   const location = useLocation()
 
   useEffect(() => {

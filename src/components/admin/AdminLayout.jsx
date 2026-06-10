@@ -137,7 +137,7 @@ export default function AdminLayout() {
               </NavLink>
             )}
 
-            {hasPermission('view_leads') && (
+            {/* {hasPermission('view_leads') && (
               <NavLink
                 to="/admin/followups"
                 className={({ isActive }) => `admin-sidebar__link ${isActive ? 'active' : ''}`}
@@ -146,7 +146,7 @@ export default function AdminLayout() {
                 <FiCalendar className="admin-sidebar__link-icon" />
                 <span>Follow-Ups</span>
               </NavLink>
-            )}
+            )} */}
 
             {hasPermission('manage_staff') && (
               <NavLink
@@ -159,7 +159,7 @@ export default function AdminLayout() {
               </NavLink>
             )}
 
-            {hasPermission('manage_roles') && (
+            {/* {hasPermission('manage_roles') && (
               <NavLink
                 to="/admin/roles"
                 className={({ isActive }) => `admin-sidebar__link ${isActive ? 'active' : ''}`}
@@ -168,7 +168,7 @@ export default function AdminLayout() {
                 <FiShield className="admin-sidebar__link-icon" />
                 <span>Roles & Permissions</span>
               </NavLink>
-            )}
+            )} */}
 
             {hasPermission('manage_content') && (
               <NavLink

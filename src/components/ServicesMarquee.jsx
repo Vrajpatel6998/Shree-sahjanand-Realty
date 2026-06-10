@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import { services } from '../data/siteData.js'
+import { useSite } from '../context/SiteContext'
 import './ServicesMarquee.css'
 
 export default function ServicesMarquee() {
+  const { services } = useSite()
   const [isPaused, setIsPaused] = useState(false)
   
   // Extract service titles

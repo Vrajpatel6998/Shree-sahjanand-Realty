@@ -188,9 +188,9 @@ export default function Staff() {
           <h2 className="admin-title-block__title">Staff Management</h2>
           <p className="admin-title-block__subtitle">Manage credentials, permissions roles, and access status of corporate profiles.</p>
         </div>
-        <button className="admin-btn admin-btn--primary" onClick={() => { setIsEditing(false); setFormData({ username: '', password: '', fullName: '', email: '', mobileNumber: '', roleId: roles[0]?.id?.toString() || '' }); setFormOpen(true); }}>
+        {/* <button className="admin-btn admin-btn--primary" onClick={() => { setIsEditing(false); setFormData({ username: '', password: '', fullName: '', email: '', mobileNumber: '', roleId: roles[0]?.id?.toString() || '' }); setFormOpen(true); }}>
           <FiPlus /> Register Staff
-        </button>
+        </button> */}
       </div>
 
       {/* Staff Table */}

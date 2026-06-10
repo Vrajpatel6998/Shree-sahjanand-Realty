@@ -13,16 +13,17 @@ import './App.css'
 
 // Admin CRM Imports
 import { AuthProvider } from './context/AuthContext'
+import { SiteProvider } from './context/SiteContext'
 import Login from './pages/admin/Login'
 import AdminLayout from './components/admin/AdminLayout'
 import Dashboard from './pages/admin/Dashboard'
 import Leads from './pages/admin/Leads'
 import Staff from './pages/admin/Staff'
-import Roles from './pages/admin/Roles'
+// import Roles from './pages/admin/Roles'
 import AdminServices from './pages/admin/Services'
 import Logs from './pages/admin/Logs'
 import Settings from './pages/admin/Settings'
-import FollowUps from './pages/admin/FollowUps'
+// import FollowUps from './pages/admin/FollowUps'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -58,9 +59,9 @@ function AppContent() {
           <Route index element={<Navigate to="/admin/dashboard" replace />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="leads" element={<Leads />} />
-          <Route path="followups" element={<FollowUps />} />
+          {/* <Route path="followups" element={<FollowUps />} /> */}
           <Route path="staff" style={{ display: 'none' }} element={<Staff />} />
-          <Route path="roles" element={<Roles />} />
+          {/* <Route path="roles" element={<Roles />} /> */}
           <Route path="services" element={<AdminServices />} />
           <Route path="logs" element={<Logs />} />
           <Route path="settings" element={<Settings />} />
@@ -129,9 +130,11 @@ function AppContent() {
 export default function App() {
   return (
     <AuthProvider>
-      <Router>
-        <AppContent />
-      </Router>
+      <SiteProvider>
+        <Router>
+          <AppContent />
+        </Router>
+      </SiteProvider>
     </AuthProvider>
   )
 }

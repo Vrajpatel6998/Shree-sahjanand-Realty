@@ -2,10 +2,11 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FiPhone, FiMail, FiFacebook, FiInstagram, FiTwitter, FiYoutube, FiLinkedin, FiAward } from 'react-icons/fi'
 import { FaWhatsapp } from 'react-icons/fa'
-import { siteInfo } from '../data/siteData.js'
+import { useSite } from '../context/SiteContext'
 import './TopBar.css'
 
-export default function TopBar({ settings, scrolled }) {
+export default function TopBar({ scrolled }) {
+  const { siteInfo } = useSite()
   const [currentLineIdx, setCurrentLineIdx] = useState(0)
   
   const lines = [
@@ -20,13 +21,13 @@ export default function TopBar({ settings, scrolled }) {
     return () => clearInterval(timer)
   }, [])
 
-  const phone = settings?.phone || siteInfo.phone
-  const email = settings?.email || siteInfo.email
+  const phone = siteInfo.phone
+  const email = siteInfo.email
   
   const socialIcons = [
-    { icon: FiFacebook, href: settings?.social?.facebook || siteInfo.social.facebook, label: 'Facebook' },
-    { icon: FiInstagram, href: settings?.social?.instagram || siteInfo.social.instagram, label: 'Instagram' },
-    { icon: FiYoutube, href: settings?.social?.youtube || siteInfo.social.youtube, label: 'YouTube' },
+    { icon: FiFacebook, href: siteInfo.social.facebook, label: 'Facebook' },
+    { icon: FiInstagram, href: siteInfo.social.instagram, label: 'Instagram' },
+    { icon: FiYoutube, href: siteInfo.social.youtube, label: 'YouTube' },
   ]
 
   return (

@@ -81,7 +81,7 @@ export default function Navbar({ onInquiryOpen }) {
           </div>
         </div>
 
-        <TopBar settings={settings} scrolled={scrolled} />
+        <TopBar scrolled={scrolled} />
         
         <motion.nav
           className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}

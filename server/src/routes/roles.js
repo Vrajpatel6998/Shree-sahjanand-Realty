@@ -160,7 +160,7 @@ router.delete('/:id', authenticateToken, requirePermission('manage_roles'), asyn
       return res.status(404).json({ message: 'Role not found' });
     }
 
-    if (role.name === 'Admin' || role.name === 'Receptionist') {
+    if (role.name.toLowerCase() === 'admin' || role.name.toLowerCase() === 'receptionist') {
       return res.status(400).json({ message: 'Cannot delete core system roles (Admin, Receptionist)' });
     }
 
