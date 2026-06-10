@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { FiPhone, FiMail, FiMapPin, FiFacebook, FiInstagram, FiYoutube, FiLinkedin, FiSend, FiTwitter } from 'react-icons/fi'
 import { FaWhatsapp } from 'react-icons/fa'
-import logo from '../assets/logo.jpeg'
+import logo from '../assets/logo.png'
 import { siteInfo, services } from '../data/siteData.js'
 import './Footer.css'
 

@@ -30,8 +30,9 @@ export default function TopBar({ settings, scrolled }) {
   ]
 
   return (
-    <div className={`top-bar ${scrolled ? 'top-bar--scrolled' : ''}`}>
+    <div className="top-bar">
       <div className="container top-bar__inner">
+        <div className="top-bar__logo-spacer" />
         <div className="top-bar__announcement">
           <AnimatePresence mode="wait">
             <motion.div

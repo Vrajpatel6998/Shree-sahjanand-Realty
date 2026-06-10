@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FiMenu, FiX, FiChevronDown, FiPhone } from 'react-icons/fi'
-import logo from '../assets/logo.jpeg'
+import logo from '../assets/logo.png'
 import TopBar from './TopBar'
 import './Navbar.css'
 
@@ -66,14 +66,19 @@ export default function Navbar({ onInquiryOpen }) {
   return (
     <>
       <div className={`header-container ${scrolled ? 'header-container--scrolled' : ''}`}>
-        
-
-        {/* Container wrapper to align logo bounds */}
-        <div className="header-logo-align-wrapper container">
-          {/* Overlapping logo for desktop */}
-          <Link to="/" className={`header-logo-overlay ${scrolled ? 'header-logo-overlay--scrolled' : ''}`}>
-            <img src={logo} alt="Shree Sahjanand Realty Logo" />
+        {/* Desktop Logo Area with Curve */}
+        <div className="header-logo-container container">
+          <Link to="/" className="header-logo-text">
+            <span className="header-logo-text-name">Shree Sahjanand</span>
+            <span className="header-logo-text-sub">Realty</span>
           </Link>
+          <div className="header-logo-curve">
+            <Link to="/" className="header-logo-link">
+              <div className="header-logo-circle">
+                <img src={logo} alt="Shree Sahjanand Realty Logo" />
+              </div>
+            </Link>
+          </div>
         </div>
 
         <TopBar settings={settings} scrolled={scrolled} />
