@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "download-images": "node scripts/download-images.js",
     "build:server": "cd server && npm install && npx prisma generate",
-    "setup:prod": "npm install && npm run download-images && npm run build && npm run build:server"
+    "setup:prod": "npm install && npm run download-images && npm run build && npm run build:server",
+    "db:setup:prod": "cd server && npx prisma db push && npx prisma db seed"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
