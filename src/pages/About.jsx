@@ -115,10 +115,10 @@ export default function About({ onInquiryOpen }) {
             >
               <div className="about-intro__img-stack">
                 <div className="about-intro__img about-intro__img--main">
-                  <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=700&q=80" alt="Modern Building" />
+                   <img src="/assets/images/hero-2.jpg" alt="Modern Building" />
                 </div>
                 <div className="about-intro__img about-intro__img--overlay">
-                  <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=500&q=80" alt="Fully Furnished Home" />
+                   <img src="/assets/images/about-furnished.jpg" alt="Fully Furnished Home" />
                 </div>
                 <div className="about-intro__stat-chip">
                   <strong>18+</strong>

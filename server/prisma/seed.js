@@ -172,7 +172,7 @@ async function main() {
         'RERA Approved Properties',
         'Easy Loan Assistance',
       ],
-      image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80',
+      image: '/uploads/default-residential.jpg',
       dimensions: '1200 x 800 px',
     },
     {
@@ -188,7 +188,7 @@ async function main() {
         'Strategic Locations',
         'High ROI Properties',
       ],
-      image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80',
+      image: '/uploads/default-commercial.jpg',
       dimensions: '1200 x 800 px',
     },
     {
@@ -204,7 +204,7 @@ async function main() {
         'GIDC Approved Properties',
         'Clear Title Properties',
       ],
-      image: 'https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=800&q=80',
+      image: '/uploads/default-industrial.jpg',
       dimensions: '1200 x 800 px',
     },
     {
@@ -220,7 +220,7 @@ async function main() {
         'Development Land',
         'Investment Opportunities',
       ],
-      image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=80',
+      image: '/uploads/default-land.jpg',
       dimensions: '1200 x 800 px',
     },
     {
@@ -236,7 +236,7 @@ async function main() {
         'Mortgage Loans',
         'Lowest Interest Rates',
       ],
-      image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&q=80',
+      image: '/uploads/default-loans.jpg',
       dimensions: '1200 x 800 px',
     },
     {
@@ -252,7 +252,7 @@ async function main() {
         'Renovation Services',
         '3D Design Visualization',
       ],
-      image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80',
+      image: '/uploads/default-interior.jpg',
       dimensions: '1200 x 800 px',
     },
   ];

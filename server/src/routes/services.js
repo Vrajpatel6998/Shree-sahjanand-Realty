@@ -188,12 +188,12 @@ router.delete('/:id/image', authenticateToken, requirePermission('manage_images'
     }
 
     // Set back a placeholder image based on category
-    let defaultUrl = 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80';
-    if (serviceId === 'commercial') defaultUrl = 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80';
-    if (serviceId === 'industrial') defaultUrl = 'https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=800&q=80';
-    if (serviceId === 'land') defaultUrl = 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=80';
-    if (serviceId === 'loans') defaultUrl = 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&q=80';
-    if (serviceId === 'interior') defaultUrl = 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80';
+    let defaultUrl = '/uploads/default-residential.jpg';
+    if (serviceId === 'commercial') defaultUrl = '/uploads/default-commercial.jpg';
+    if (serviceId === 'industrial') defaultUrl = '/uploads/default-industrial.jpg';
+    if (serviceId === 'land') defaultUrl = '/uploads/default-land.jpg';
+    if (serviceId === 'loans') defaultUrl = '/uploads/default-loans.jpg';
+    if (serviceId === 'interior') defaultUrl = '/uploads/default-interior.jpg';
 
     await prisma.service.update({
       where: { id: serviceId },

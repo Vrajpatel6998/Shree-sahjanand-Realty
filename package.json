@@ -7,7 +7,10 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "download-images": "node scripts/download-images.js",
+    "build:server": "cd server && npm install && npx prisma generate",
+    "setup:prod": "npm install && npm run download-images && npm run build && npm run build:server"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

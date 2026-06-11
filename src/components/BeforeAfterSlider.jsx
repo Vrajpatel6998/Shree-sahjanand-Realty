@@ -2,8 +2,8 @@ import { useState } from 'react'
 import './BeforeAfterSlider.css'
 
 export default function BeforeAfterSlider({ 
-  beforeImage = "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=1200&q=80", 
-  afterImage = "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200&q=90",
+  beforeImage = "/assets/images/before-interior.jpg", 
+  afterImage = "/assets/images/after-interior.jpg",
   beforeLabel = "Before",
   afterLabel = "After"
 }) {

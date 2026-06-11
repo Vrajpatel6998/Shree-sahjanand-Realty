@@ -31,13 +31,13 @@ export default function AboutSection() {
             <div className="about__img-wrap">
               <div className="about__img-main">
                 <img
-                  src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=700&q=80"
+                  src="/assets/images/about-office.jpg"
                   alt="Shree Sahjanand Realty Office"
                 />
               </div>
               <div className="about__img-secondary">
                 <img
-                  src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=400&q=80"
+                  src="/assets/images/about-property.jpg"
                   alt="Premium Property"
                 />
               </div>
