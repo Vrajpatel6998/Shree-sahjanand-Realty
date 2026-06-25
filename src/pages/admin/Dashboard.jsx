@@ -68,8 +68,7 @@ export default function Dashboard() {
         { service: 'Commercial', count: 18 },
         { service: 'Industrial', count: 8 },
         { service: 'Land', count: 12 },
-        { service: 'Loans', count: 6 },
-        { service: 'Interior', count: 15 }
+        { service: 'Loans', count: 6 }
       ];
 
   // Custom SVG Line Chart Component

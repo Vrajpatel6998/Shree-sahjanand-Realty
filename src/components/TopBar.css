@@ -95,12 +95,22 @@
 }
 
 /* Responsiveness */
-@media (max-width: 992px) {
+@media (max-width: 1024px) {
   .top-bar__logo-spacer {
     display: none;
   }
   .top-bar__contacts {
     display: none;
+  }
+  .top-bar__announcement {
+    display: none !important;
+  }
+  .top-bar__inner {
+    justify-content: center;
+  }
+  .top-bar__socials {
+    margin-left: 0;
+    justify-content: center;
   }
 }
 

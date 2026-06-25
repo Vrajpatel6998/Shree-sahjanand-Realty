@@ -24,10 +24,7 @@ const IMAGES = [
     url: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&h=800&fit=crop&q=80',
     dest: 'server/uploads/default-loans.jpg'
   },
-  {
-    url: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200&h=800&fit=crop&q=80',
-    dest: 'server/uploads/default-interior.jpg'
-  },
+
 
   // Frontend assets - Hero slides
   {
@@ -42,32 +39,7 @@ const IMAGES = [
     url: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=80',
     dest: 'public/assets/images/hero-3.jpg'
   },
-  {
-    url: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1920&q=80',
-    dest: 'public/assets/images/hero-4.jpg'
-  },
 
-  // Interior services
-  {
-    url: 'https://images.unsplash.com/photo-1615529182904-14819c35db37?w=1000&q=90',
-    dest: 'public/assets/images/interior-1.jpg'
-  },
-  {
-    url: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1000&q=90',
-    dest: 'public/assets/images/interior-2.jpg'
-  },
-  {
-    url: 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=1000&q=90',
-    dest: 'public/assets/images/interior-3.jpg'
-  },
-  {
-    url: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1000&q=90',
-    dest: 'public/assets/images/interior-4.jpg'
-  },
-  {
-    url: 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=1000&q=90',
-    dest: 'public/assets/images/interior-5.jpg'
-  },
 
   // Team members
   {
@@ -100,14 +72,7 @@ const IMAGES = [
     url: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=500&q=80',
     dest: 'public/assets/images/about-furnished.jpg'
   },
-  {
-    url: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=1200&q=80',
-    dest: 'public/assets/images/before-interior.jpg'
-  },
-  {
-    url: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200&q=90',
-    dest: 'public/assets/images/after-interior.jpg'
-  }
+
 ];
 
 const downloadImage = (url, dest) => {

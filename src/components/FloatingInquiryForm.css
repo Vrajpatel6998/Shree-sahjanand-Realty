@@ -68,45 +68,50 @@
 
 .float-form__group { display: flex; flex-direction: column; }
 
-.float-form__input {
+.float-form .float-form__input {
   padding: 10px 12px;
-  border: 1.5px solid rgba(255, 255, 255, 0.2);
-  border-radius: var(--radius-sm);
+  border: 1.5px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: var(--radius-sm) !important;
   font-family: var(--font-body);
   font-size: 0.82rem;
-  color: var(--white);
-  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-dark) !important;
+  background: var(--white) !important;
   outline: none;
   transition: all 0.25s ease;
   width: 100%;
   appearance: none;
 }
 
-.float-form__input::placeholder {
-  color: rgba(255, 255, 255, 0.45);
+.float-form .float-form__input::placeholder {
+  color: var(--gray-text) !important;
   font-size: 0.8rem;
 }
 
-.float-form__input option {
-  background: var(--primary-dark);
-  color: var(--white);
+.float-form .float-form__input option {
+  background: var(--white) !important;
+  color: var(--text-dark) !important;
 }
 
-.float-form__input:focus {
-  border-color: var(--accent);
-  background: rgba(0, 180, 216, 0.1);
-  box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.15);
+.float-form .float-form__input:focus {
+  border-color: var(--accent) !important;
+  background: #f0fdff !important; /* Solid light cyan-blue */
+  box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.15) !important;
 }
 
-.float-form__input.is-invalid {
+.float-form .float-form__input.is-invalid,
+.float-form .form-control.is-invalid {
   border-color: var(--error) !important;
   box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.25) !important;
-  background: rgba(230, 57, 70, 0.1) !important;
+  background: #fff0f1 !important; /* Solid light pink-red */
+  color: var(--text-dark) !important;
 }
 
-.float-form__input.is-valid {
+.float-form .float-form__input.is-valid,
+.float-form .form-control.is-valid {
   border-color: var(--success) !important;
   box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.25) !important;
+  background: #f6fef9 !important; /* Solid light green */
+  color: var(--text-dark) !important;
 }
 
 .float-form .input-with-icon .form-control {

@@ -239,22 +239,6 @@ async function main() {
       image: '/uploads/default-loans.jpg',
       dimensions: '1200 x 800 px',
     },
-    {
-      id: 'interior',
-      title: 'Interior Solutions',
-      shortDesc: 'Premium interior design for homes, offices & commercial spaces.',
-      description: 'Transform your property into a stunning masterpiece with our interior design services. Our expert designers create personalized spaces that reflect your style while maximizing functionality and aesthetics.',
-      features: [
-        'Residential Interiors',
-        'Commercial Interiors',
-        'Office Interiors',
-        'Space Planning',
-        'Renovation Services',
-        '3D Design Visualization',
-      ],
-      image: '/uploads/default-interior.jpg',
-      dimensions: '1200 x 800 px',
-    },
   ];
 
   for (const service of defaultServices) {

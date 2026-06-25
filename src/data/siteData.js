@@ -23,7 +23,7 @@ import {
 
 export const siteInfo = {
   name: "Shree Sahjanand Realty",
-  tagline: "Trusted Real Estate Partner Since 2007",
+  tagline: "Trusted Real Estate Advisor Since 2007",
   subtagline: "Helping Families and Businesses Find Their Perfect Property",
   phone: "+91 99094 21050",
   email: "info@shreesahjanandrealty.com",
@@ -42,17 +42,17 @@ export const siteInfo = {
 };
 
 export const stats = [
-  { id: 1, value: 18, suffix: "+", label: "Years Experience", icon: FiAward },
-  { id: 2, value: 1000, suffix: "+", label: "Happy Clients", icon: FiSmile },
-  { id: 3, value: 500, suffix: "+", label: "Properties Sold", icon: FiHome },
-  { id: 4, value: 100, suffix: "+", label: "Ongoing Projects", icon: FiActivity },
+  { id: 1, value: 19, suffix: "+", label: "Years Experience", icon: FiAward },
+  { id: 2, value: 18000, suffix: "+", label: "Happy Clients", icon: FiSmile },
+  { id: 3, value: 7000, suffix: "+", label: "Properties Sold", icon: FiHome },
+  { id: 4, value: 950, suffix: "+", label: "Ongoing Projects", icon: FiActivity },
 ];
 
 export const heroSlides = [
   {
     id: 1,
     image: "/assets/images/hero-1.jpg",
-    headline: "Trusted Real Estate Partner",
+    headline: "Trusted Real Estate Experts",
     highlight: "Since 2007",
     subheading: "Helping Families and Businesses Find Their Perfect Property",
   },
@@ -69,13 +69,6 @@ export const heroSlides = [
     headline: "Commercial Real Estate",
     highlight: "Solutions",
     subheading: "Find the perfect commercial space for your growing business",
-  },
-  {
-    id: 4,
-    image: "/assets/images/hero-4.jpg",
-    headline: "Interior Design",
-    highlight: "Excellence",
-    subheading: "Transform your space into a masterpiece with our design experts",
   },
 ];
 
@@ -170,24 +163,6 @@ export const services = [
     color: "#c9a84c",
     gradient: "linear-gradient(135deg, #c9a84c, #f0d98c)",
   },
-  {
-    id: "interior",
-    title: "Interior Solutions",
-    icon: FiLayers,
-    shortDesc: "Premium interior design for homes, offices & commercial spaces.",
-    description: "Transform your property into a stunning masterpiece with our interior design services. Our expert designers create personalized spaces that reflect your style while maximizing functionality and aesthetics.",
-    features: [
-      "Residential Interiors",
-      "Commercial Interiors",
-      "Office Interiors",
-      "Space Planning",
-      "Renovation Services",
-      "3D Design Visualization",
-    ],
-    image: "/uploads/default-interior.jpg",
-    color: "#8b5cf6",
-    gradient: "linear-gradient(135deg, #8b5cf6, #00b4d8)",
-  },
 ];
 
 export const loanTypes = [
@@ -206,43 +181,7 @@ export const loanProcess = [
   { step: 5, title: "Disbursement", desc: "Quick disbursement directly to your account", icon: FiTrendingUp },
 ];
 
-export const interiorServices = [
-  {
-    id: 1,
-    title: "Residential Interiors",
-    desc: "Transform your home into a luxurious sanctuary",
-    image: "/assets/images/interior-1.jpg",
-    icon: FiLayers,
-  },
-  {
-    id: 2,
-    title: "Commercial Interiors",
-    desc: "Create impressive spaces that inspire business",
-    image: "/assets/images/interior-2.jpg",
-    icon: FiBriefcase,
-  },
-  {
-    id: 3,
-    title: "Office Interiors",
-    desc: "Productive workspaces designed for success",
-    image: "/assets/images/interior-3.jpg",
-    icon: FiUsers,
-  },
-  {
-    id: 4,
-    title: "Space Planning",
-    desc: "Optimize every square foot with smart design",
-    image: "/assets/images/interior-4.jpg",
-    icon: FiGrid,
-  },
-  {
-    id: 5,
-    title: "Renovation Services",
-    desc: "Breathe new life into existing spaces",
-    image: "/assets/images/interior-5.jpg",
-    icon: FiTool,
-  },
-];
+// Interior services list removed
 
 export const teamMembers = [
   {
@@ -252,7 +191,7 @@ export const teamMembers = [
     image: "/assets/images/team-1.jpg",
     phone: "+91 99094 21050",
     email: "rajesh@shreesahjanandrealty.com",
-    experience: "18+ Years",
+    experience: "19+ Years",
   },
   {
     id: 2,
@@ -272,29 +211,20 @@ export const teamMembers = [
     email: "amit@shreesahjanandrealty.com",
     experience: "12+ Years",
   },
-  {
-    id: 4,
-    name: "Sneha Mehta",
-    designation: "Interior Design Lead",
-    image: "/assets/images/team-4.jpg",
-    phone: "+91 99094 21050",
-    email: "sneha@shreesahjanandrealty.com",
-    experience: "8+ Years",
-  },
 ];
 
 export const timeline = [
   { year: "2007", title: "Foundation", desc: "Shree Sahjanand Realty was founded with a vision to transform the real estate landscape." },
   { year: "2010", title: "First 100 Clients", desc: "Crossed the milestone of 100 happy families finding their dream homes." },
   { year: "2013", title: "Commercial Expansion", desc: "Launched commercial property division serving growing businesses." },
-  { year: "2016", title: "Interior Division", desc: "Added premium interior design services to our portfolio." },
+
   { year: "2019", title: "Loan Advisory", desc: "Launched real estate loan advisory services with 20+ banking partners." },
   { year: "2022", title: "Digital Transformation", desc: "Embraced technology for better client experience and property discovery." },
-  { year: "2024", title: "1000+ Clients", desc: "Celebrated serving 1000+ satisfied families and businesses." },
+  { year: "2024", title: "18000+ Clients", desc: "Celebrated serving 18000+ satisfied families and businesses." },
 ];
 
 export const whyUs = [
-  { icon: FiAward, title: "18+ Years Experience", desc: "Decades of expertise in real estate market across Gujarat" },
+  { icon: FiAward, title: "19+ Years Experience", desc: "Decades of expertise in real estate market across Gujarat" },
   { icon: FiUsers, title: "Trusted Network", desc: "Strong network of 50+ developers and banking partners" },
   { icon: FiShield, title: "RERA Compliant", desc: "All properties are RERA approved and legally verified" },
   { icon: FiZap, title: "Quick Processing", desc: "Fast-track property deals and loan approvals" },
@@ -309,7 +239,7 @@ export const inquiryFormOptions = {
     "Industrial Property",
     "Land Property",
     "Real Estate Loan",
-    "Interior Solution",
+
   ],
   inquiryTypes: [
     "Investor",

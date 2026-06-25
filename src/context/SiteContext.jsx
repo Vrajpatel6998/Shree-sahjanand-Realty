@@ -5,8 +5,7 @@ import {
   FiBriefcase,
   FiActivity,
   FiMap,
-  FiDollarSign,
-  FiLayers
+  FiDollarSign
 } from 'react-icons/fi';
 
 const SiteContext = createContext(null);
@@ -16,8 +15,7 @@ const staticServiceMetadata = {
   commercial: { icon: FiBriefcase, color: "#00b4d8", gradient: "linear-gradient(135deg, #00b4d8, #48cae4)" },
   industrial: { icon: FiActivity, color: "#0d1b4b", gradient: "linear-gradient(135deg, #0d1b4b, #1a3c8e)" },
   land: { icon: FiMap, color: "#2d7a4f", gradient: "linear-gradient(135deg, #2d7a4f, #48cae4)" },
-  loans: { icon: FiDollarSign, color: "#c9a84c", gradient: "linear-gradient(135deg, #c9a84c, #f0d98c)" },
-  interior: { icon: FiLayers, color: "#8b5cf6", gradient: "linear-gradient(135deg, #8b5cf6, #00b4d8)" }
+  loans: { icon: FiDollarSign, color: "#c9a84c", gradient: "linear-gradient(135deg, #c9a84c, #f0d98c)" }
 };
 
 export const useSite = () => {
@@ -56,7 +54,8 @@ export const SiteProvider = ({ children }) => {
       if (servicesRes.ok) {
         const servicesData = await servicesRes.json();
         if (servicesData && servicesData.length > 0) {
-          const mergedServices = servicesData.map(s => {
+          const filteredServices = servicesData.filter(s => s.id !== 'interior');
+          const mergedServices = filteredServices.map(s => {
             const metadata = staticServiceMetadata[s.id] || {};
             return {
               ...s,

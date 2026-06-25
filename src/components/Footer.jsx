@@ -49,7 +49,7 @@ export default function Footer() {
                 </div>
               </Link>
               <p className="footer__desc">
-                {siteInfo.subtagline || "Gujarat's most trusted real estate consultancy providing residential, commercial, industrial, land, loan, and interior design services since 2007."}
+                {siteInfo.subtagline || "Gujarat's most trusted real estate consultancy providing residential, commercial, industrial, land, and loan services since 2007."}
               </p>
               <div className="footer__socials">
                 {socialIcons.map(({ icon: Icon, href, label }) => (

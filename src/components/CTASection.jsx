@@ -30,8 +30,8 @@ export default function CTASection({ onInquiryOpen }) {
             <span className="cta-section__highlight">Dream Property?</span>
           </h2>
           <p className="cta-section__sub">
-            Let our experts guide you to the perfect property. With 18+ years of experience
-            and 1000+ happy clients, we're ready to help you today.
+            Let our experts guide you to the perfect property. With 19+ years of experience
+            and 18000+ happy clients, we're ready to help you today.
           </p>
 
           <div className="cta-section__actions">
@@ -48,15 +48,15 @@ export default function CTASection({ onInquiryOpen }) {
           <div className="cta-section__trust">
             <div className="cta-trust-item">
               <span className="cta-trust-icon"><FiAward /></span>
-              <span>18+ Years</span>
+              <span>19+ Years</span>
             </div>
             <div className="cta-trust-item">
               <span className="cta-trust-icon"><FiSmile /></span>
-              <span>1000+ Clients</span>
+              <span>18000+ Clients</span>
             </div>
             <div className="cta-trust-item">
               <span className="cta-trust-icon"><FiHome /></span>
-              <span>500+ Properties</span>
+              <span>7000+ Properties</span>
             </div>
             <div className="cta-trust-item">
               <span className="cta-trust-icon"><FiStar /></span>

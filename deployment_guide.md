@@ -42,7 +42,7 @@ sudo apt update && sudo apt upgrade -y
 # Download and import the NodeSource GPG key and repository
 sudo apt-get install -y ca-certificates curl gnupg
 sudo mkdir -p /etc/apt/keyrings
-curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+    | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
 
 # Create debian repository
 NODE_MAJOR=20

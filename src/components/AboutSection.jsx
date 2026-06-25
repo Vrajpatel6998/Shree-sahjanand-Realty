@@ -5,8 +5,8 @@ import { FiArrowRight, FiCheckCircle } from 'react-icons/fi'
 import './AboutSection.css'
 
 const highlights = [
-  "18+ Years of Trust & Excellence",
-  "1000+ Happy Families Served",
+  "19+ Years of Trust & Excellence",
+  "18000+ Happy Families Served",
   "RERA Compliant Properties",
   "End-to-End Legal Support",
   "Pan-Gujarat Real Estate Network",
@@ -46,7 +46,7 @@ export default function AboutSection() {
                 <span className="about__badge-text">Year of<br />Establishment</span>
               </div>
               <div className="about__experience-card">
-                <div className="about__exp-number">18+</div>
+                <div className="about__exp-number">19+</div>
                 <div className="about__exp-label">Years of<br />Experience</div>
               </div>
             </div>
@@ -67,11 +67,11 @@ export default function AboutSection() {
             <p className="about__desc">
               Since 2007, <strong>Shree Sahjanand Realty</strong> has been the cornerstone of real estate excellence
               in Gujarat. We are a full-service real estate consultancy providing premium residential,
-              commercial, industrial, land, loan, and interior design services.
+              commercial, industrial, land, and loan services.
             </p>
             <p className="about__desc">
               Our team of dedicated professionals brings unmatched market expertise, transparent dealings,
-              and a client-first approach that has earned the trust of over 1,000 families and businesses.
+              and a client-first approach that has earned the trust of over 18,000 families and businesses.
             </p>
 
             <div className="about__highlights">

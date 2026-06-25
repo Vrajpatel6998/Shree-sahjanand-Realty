@@ -267,3 +267,7 @@
   .loan-section__types { grid-template-columns: 1fr 1fr; }
   .loan-section__process { padding: 28px 20px; }
 }
+
+@media (max-width: 480px) {
+  .loan-section__types { grid-template-columns: 1fr; }
+}

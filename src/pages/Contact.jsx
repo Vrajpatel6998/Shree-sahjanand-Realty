@@ -54,7 +54,7 @@ export default function Contact() {
   const [currentTaglineIdx, setCurrentTaglineIdx] = useState(0)
 
   const taglineLines = [
-    <span key="award" className="contact-tagline-item"><FiAward style={{ color: 'var(--accent)' }} /> Your Trusted Real Estate Partner Since 2007</span>,
+    <span key="award" className="contact-tagline-item"><FiAward style={{ color: 'var(--accent)' }} /> Your Trusted Real Estate Advisor Since 2007</span>,
     <span key="phone" className="contact-tagline-item"><FiPhone style={{ color: 'var(--accent)' }} /> Contact us for free legal guidance & property consulting!</span>
   ]
 

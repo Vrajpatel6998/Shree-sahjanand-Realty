@@ -193,7 +193,6 @@ router.delete('/:id/image', authenticateToken, requirePermission('manage_images'
     if (serviceId === 'industrial') defaultUrl = '/uploads/default-industrial.jpg';
     if (serviceId === 'land') defaultUrl = '/uploads/default-land.jpg';
     if (serviceId === 'loans') defaultUrl = '/uploads/default-loans.jpg';
-    if (serviceId === 'interior') defaultUrl = '/uploads/default-interior.jpg';
 
     await prisma.service.update({
       where: { id: serviceId },

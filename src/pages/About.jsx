@@ -9,7 +9,6 @@ import {
   FiFlag,
   FiUsers,
   FiTrendingUp,
-  FiLayers,
   FiDollarSign,
   FiCpu,
   FiAward
@@ -20,14 +19,13 @@ import CTASection from '../components/CTASection'
 import ServicesMarquee from '../components/ServicesMarquee'
 import './About.css'
 
-const timelineIcons = [
-  FiFlag,        // 2007 - Foundation
-  FiUsers,       // 2010 - First 100 Clients
-  FiTrendingUp,  // 2013 - Commercial Expansion
-  FiLayers,      // 2016 - Interior Division
-  FiDollarSign,  // 2019 - Loan Advisory
-  FiCpu,         // 2022 - Digital Transformation
-  FiAward        // 2024 - 1000+ Clients
+const timelineConfigs = [
+  { icon: FiFlag, position: 7, isUp: true },        // 2007 - Foundation
+  { icon: FiUsers, position: 20, isUp: false },     // 2010 - First 100 Clients
+  { icon: FiTrendingUp, position: 37, isUp: true },  // 2013 - Commercial Expansion
+  { icon: FiDollarSign, position: 67, isUp: true },  // 2019 - Loan Advisory
+  { icon: FiCpu, position: 82, isUp: false },       // 2022 - Digital Transformation
+  { icon: FiAward, position: 95, isUp: true }        // 2024 - 18000+ Clients
 ]
 
 const visionMission = [
@@ -39,7 +37,7 @@ const visionMission = [
   {
     type: 'Mission',
     icon: FiZap,
-    content: 'To provide transparent, ethical, and comprehensive real estate solutions — from property discovery to interior design — creating lasting value for every client we serve.',
+    content: 'To provide transparent, ethical, and comprehensive real estate solutions — from property discovery to securing financing — creating lasting value for every client we serve.',
   },
 ]
 
@@ -95,9 +93,9 @@ export default function About({ onInquiryOpen }) {
                 belief — that every family deserves honest, expert guidance in finding their perfect property.
               </p>
               <p style={{ color: 'var(--text-body)', lineHeight: 1.8, marginBottom: 24 }}>
-                Over 18+ years, we've grown from a humble property consultancy into Gujarat's most trusted
-                full-service real estate firm, serving 1000+ clients across residential, commercial, industrial,
-                land, loan, and interior design sectors.
+                Over 19+ years, we've grown from a humble property consultancy into Gujarat's most trusted
+                full-service real estate firm, serving 18000+ clients across residential, commercial, industrial,
+                land, and loan sectors.
               </p>
               <p style={{ color: 'var(--text-body)', lineHeight: 1.8, marginBottom: 36 }}>
                 Our strength lies in our deep market knowledge, transparent dealings, and a passionate team
@@ -121,7 +119,7 @@ export default function About({ onInquiryOpen }) {
                    <img src="/assets/images/about-furnished.jpg" alt="Fully Furnished Home" />
                 </div>
                 <div className="about-intro__stat-chip">
-                  <strong>18+</strong>
+                  <strong>19+</strong>
                   <span>Years of Trust</span>
                 </div>
               </div>
@@ -167,7 +165,7 @@ export default function About({ onInquiryOpen }) {
               Why Choose <span className="text-accent">Shree Sahjanand Realty?</span>
             </h2>
             <p className="section-subtitle" style={{ margin: '0 auto' }}>
-              Trusted by 1000+ families — combining expertise, integrity, and personalized service.
+              Trusted by 18000+ families — combining expertise, integrity, and personalized service.
             </p>
           </motion.div>
 
@@ -202,7 +200,7 @@ export default function About({ onInquiryOpen }) {
             >
               <div className="why-us__center-capsule">
                 <div className="why-us__center-badge">
-                  ✦ Trusted by 1000+ Clients
+                  ✦ Trusted by 18000+ Clients
                 </div>
                 <img
                   src="/city-illustration.png"
@@ -211,11 +209,11 @@ export default function About({ onInquiryOpen }) {
                 />
                 {/* Floating stat chips */}
                 <div className="why-us__float-chip why-us__float-chip--top">
-                  <strong>18+</strong>
+                  <strong>19+</strong>
                   <span>Years</span>
                 </div>
                 <div className="why-us__float-chip why-us__float-chip--bottom">
-                  <strong>500+</strong>
+                  <strong>7000+</strong>
                   <span>Properties</span>
                 </div>
               </div>
@@ -297,10 +295,10 @@ export default function About({ onInquiryOpen }) {
             {/* Interactive Nodes */}
             <div className="journey-road__nodes">
               {timeline.map((item, i) => {
-                const IconComponent = timelineIcons[i] || FiCheckCircle
-                const isUp = i % 2 === 0
-                const positions = [7, 20, 37, 52, 67, 82, 95]
-                const xPct = positions[i]
+                const config = timelineConfigs[i] || { icon: FiCheckCircle, position: 50, isUp: true }
+                const IconComponent = config.icon
+                const isUp = config.isUp
+                const xPct = config.position
                 const yPct = isUp ? 2 : 30
 
                 return (

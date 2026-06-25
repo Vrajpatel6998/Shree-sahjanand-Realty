@@ -12,7 +12,6 @@ const serviceLinks = [
   { label: 'Industrial Properties', to: '/services#industrial' },
   { label: 'Land Properties', to: '/services#land' },
   { label: 'Real Estate Loans', to: '/services#loans' },
-  { label: 'Interior Solutions', to: '/services#interior' },
 ]
 
 const navLinks = [
