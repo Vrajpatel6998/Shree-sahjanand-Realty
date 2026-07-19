@@ -28,8 +28,8 @@ export const siteInfo = {
   phone: "+91 99094 21050",
   email: "info@shreesahjanandrealty.com",
   email2: "support@shreesahjanandrealty.com",
-  address: "123, Business Hub, Near Sardar Patel Stadium, Navrangpura, Ahmedabad - 380009, Gujarat",
-  mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.9018!2d72.5713!3d23.0225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e848abad45ebd!2sAhmedabad!5e0!3m2!1sen!2sin!4v1700000000000",
+  address: "No 6, Shree Ram Park Society, Corporate House, Raspan Cross Rd, opp. Karnavati Bunglow, Nikol, Ahmedabad, Gujarat 380049",
+  mapEmbedUrl: "https://maps.google.com/maps?q=No%206%2C%20Shree%20Ram%20Park%20Society%2C%20Corporate%20House%2C%20Raspan%20Cross%20Rd%2C%20opp.%20Karnavati%20Bunglow%2C%20Nikol%2C%20Ahmedabad%2C%20Gujarat%20380049&t=&z=15&ie=UTF8&iwloc=&output=embed",
   social: {
     facebook: "https://www.facebook.com/share/1GoXXCisGY/",
     instagram: "https://www.instagram.com/sahjanand_realty_1?igsh=cmRjNWx4azJuc3hx",
@@ -52,9 +52,9 @@ export const heroSlides = [
   {
     id: 1,
     image: "/assets/images/hero-1.jpg",
-    headline: "Trusted Real Estate Experts",
-    highlight: "Since 2007",
-    subheading: "Helping Families and Businesses Find Their Perfect Property",
+    headline: "Shree Sahjanand Realty",
+    highlight: "Trusted Since 2007",
+    subheading: "Your premier real estate consultancy in Gujarat, providing trusted residential, commercial, and land properties tailored to your needs.",
   },
   {
     id: 2,

@@ -139,7 +139,7 @@ async function main() {
     phone2: '',
     email: 'info@shreesahjanandrealty.com',
     email2: 'support@shreesahjanandrealty.com',
-    address: '123, Business Hub, Near Sardar Patel Stadium, Navrangpura, Ahmedabad - 380009, Gujarat',
+    address: 'No 6, Shree Ram Park Society, Corporate House, Raspan Cross Rd, opp. Karnavati Bunglow, Nikol, Ahmedabad, Gujarat 380049',
     facebook: 'https://www.facebook.com/share/1GoXXCisGY/',
     instagram: 'https://www.instagram.com/sahjanand_realty_1?igsh=cmRjNWx4azJuc3hx',
     twitter: 'https://twitter.com/shreesahjanandrealty',

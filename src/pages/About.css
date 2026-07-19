@@ -845,6 +845,7 @@
     flex-direction: row !important;
     align-items: flex-start !important;
     width: 100%;
+    height: auto !important;
     cursor: default;
   }
 

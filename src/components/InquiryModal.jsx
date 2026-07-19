@@ -174,7 +174,7 @@ export default function InquiryModal({ isOpen, onClose }) {
             <div className="inquiry-modal__header">
               <div>
                 <div className="section-label" style={{ color: 'var(--accent)' }}>Quick Inquiry</div>
-                <h2 className="inquiry-modal__title">Let's Connect</h2>
+                <h2 className="inquiry-modal__title">Shree Sahjanand Realty</h2>
                 <p className="inquiry-modal__subtitle">Fill in your details and our expert will contact you shortly</p>
               </div>
               <button className="inquiry-modal__close" onClick={onClose} aria-label="Close modal">
